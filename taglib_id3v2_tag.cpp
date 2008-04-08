@@ -31,6 +31,7 @@
 */
 
 #include "php_taglib.h"
+#include "taglibrary.h"
 
 PHPAPI zend_class_entry * taglib_ce_ID3v2_Tag = NULL;
 

@@ -33,6 +33,7 @@
 /* $ Id: $ */ 
 
 #include "php_taglib.h"
+#include "taglibrary.h"
 
 #if HAVE_TAGLIB
 

@@ -53,22 +53,6 @@ extern "C" {
 #include <ext/standard/info.h>
 #include <Zend/zend_exceptions.h>
 #include <Zend/zend_extensions.h>
-#ifdef  __cplusplus
-} // extern "C" 
-#endif
-#include <taglib.h>
-#include <fileref.h>
-#include <tag.h>
-#include <tstring.h>
-#include <mpegfile.h>
-#include <tfile.h>
-#include <id3v1tag.h>
-#include <id3v2tag.h>
-#include <attachedpictureframe.h>
-#ifdef  __cplusplus
-extern "C" {
-#endif
-
 
 extern PHPAPI zend_class_entry *taglib_ce_FileNotFoundException;
 extern PHPAPI zend_class_entry *taglib_ce_TagNotFoundException;
@@ -131,14 +115,6 @@ void taglib_init_TagLib_ID3v1_Tag(void);
 void taglib_init_TagLib_ID3v2_Tag(void);
 void taglib_init_TagLib_ID3v2_Frame(void);
 void taglib_init_TagLib_ID3v2_PictureFrame(void);
-
-/* Extends zend object */
-typedef struct _ze_taglib_object {
-	zend_object zo;
-	TagLib::File *file;
-	TagLib::Tag *tag;
-	TagLib::ID3v2::Frame *frame;
-} ze_taglib_object;
 
 /* mirrored PHP Constants */
 #define TAGLIB_TYPE_NONE 0

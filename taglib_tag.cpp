@@ -125,7 +125,7 @@ void taglib_init_TagLib_Tag(void)
 	zend_class_entry ce;
 
 	INIT_CLASS_ENTRY(ce, "TagLib_Tag", TagLib_Tag_methods);
-	ce.create_object = taglib_init_TagLib_File_new;
+	ce.create_object = taglib_init_TagLib_new;
 	taglib_ce_Tag = zend_register_internal_class(&ce);
 }
 

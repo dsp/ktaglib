@@ -38,6 +38,7 @@ PHPAPI zend_class_entry * taglib_ce_ID3v2_Tag = NULL;
 PHP_METHOD(TagLib_ID3v2_Tag, getFrameList)
 {
 	ze_taglib_object *intern = NULL;
+	ze_taglib_object *zobject = NULL;
 
 	intern = (ze_taglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
 
@@ -58,8 +59,9 @@ PHP_METHOD(TagLib_ID3v2_Tag, getFrameList)
 		} else {
 			object_init_ex(obj, taglib_ce_ID3v2_Frame TSRMLS_CC);
 		}
-		intern = (ze_taglib_object*) zend_object_store_get_object(obj TSRMLS_CC);
-		intern->frame = (TagLib::ID3v2::Frame*) iter->second.front();
+		zobject = (ze_taglib_object*) zend_object_store_get_object(obj TSRMLS_CC);
+		zobject->frame = (TagLib::ID3v2::Frame*) iter->second.front();
+		taglib_ref_class(zobject, intern->zo_file);
 		add_assoc_zval(return_value, key, obj);
 	}
 }
@@ -74,6 +76,6 @@ void taglib_init_TagLib_ID3v2_Tag(void)
 	zend_class_entry ce;
 
 	INIT_CLASS_ENTRY(ce, "TagLib_ID3v2_Tag", TagLib_ID3v2_Tag_methods);
-	ce.create_object = taglib_init_TagLib_File_new;
+	ce.create_object = taglib_init_TagLib_new;
 	taglib_ce_ID3v2_Tag = zend_register_internal_class_ex(&ce, taglib_ce_Tag, NULL TSRMLS_CC);
 }

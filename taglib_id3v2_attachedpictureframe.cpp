@@ -86,6 +86,6 @@ void taglib_init_TagLib_ID3v2_PictureFrame(void)
 	zend_class_entry ce;
 
 	INIT_CLASS_ENTRY(ce, "TagLib_ID3v2_AttachedPictureFrame", TagLib_ID3v2_AttachedPictureFrame_methods);
-	ce.create_object = taglib_init_TagLib_File_new;
+	ce.create_object = taglib_init_TagLib_new;
 	taglib_ce_ID3v2_PictureFrame = zend_register_internal_class_ex(&ce, taglib_ce_ID3v2_Frame, NULL TSRMLS_CC);
 }

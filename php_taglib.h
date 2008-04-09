@@ -107,7 +107,9 @@ PHP_METHOD(TagLib_MPEG_File, getID3v1Tag);
 /* internal functions */
 void taglib_init_class(zend_class_entry **, zend_class_entry *, const char *, zend_function_entry *);
 zend_object_value taglib_init_TagLib_File_new(zend_class_entry *);
+zend_object_value taglib_init_TagLib_new(zend_class_entry *);
 void taglib_init_TagLib_File_free(void *);
+void taglib_init_TagLib_free(void *);
 void taglib_init_TagLib_Exceptions(void);
 void taglib_init_TagLib_MPEG_File(void);
 void taglib_init_TagLib_Tag(void);

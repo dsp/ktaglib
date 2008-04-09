@@ -45,6 +45,12 @@ PHPAPI zend_class_entry *taglib_ce_TagNotFoundException;
 
 static zend_class_entry * TagLib_File_ce_ptr = NULL;
 
+void taglib_ref_class(ze_taglib_object * zo, ze_taglib_file_object *zo_file)
+{
+	zo->zo_file = zo_file;
+	zo_file->refcount++;
+}
+
 /* Exceptions */
 void taglib_init_class(zend_class_entry ** ppce, zend_class_entry *pce, const char * name, zend_function_entry * functions TSRMLS_DC)
 {
@@ -63,17 +69,28 @@ void taglib_init_TagLib_Exceptions(void)
 }
 
 
-/* ctor and dtor for TagLib::File class entries */
 void taglib_init_TagLib_File_free(void *object TSRMLS_DC) /* {{{ */
+{
+	ze_taglib_file_object * intern = (ze_taglib_file_object *) object;
+
+	intern->refcount--;
+	php_printf("Refcounter %d\n", intern->refcount);
+	if (intern->refcount <= 0 && intern->file) {
+		php_printf("Do the actual free\n");
+		delete intern->file;
+	}
+
+	zend_object_std_dtor(&intern->zo TSRMLS_CC);
+	efree(intern);
+}
+
+
+void taglib_init_TagLib_free(void *object TSRMLS_DC) /* {{{ */
 {
 	ze_taglib_object * intern = (ze_taglib_object *) object;
 
-/*	if (intern->tag) {
-		delete intern->tag;
-	}
-*/
-	if (intern->file) {
-		delete intern->file;
+	if (intern->zo_file) {
+		intern->zo_file->refcount--;
 	}
 
 	zend_object_std_dtor(&intern->zo TSRMLS_CC);
@@ -82,6 +99,34 @@ void taglib_init_TagLib_File_free(void *object TSRMLS_DC) /* {{{ */
 
 zend_object_value taglib_init_TagLib_File_new(zend_class_entry *class_type TSRMLS_DC) /* {{{ */
 {
+	ze_taglib_file_object *intern;
+	zval *tmp;
+	zend_object_value retval;
+
+	intern = (ze_taglib_file_object*) emalloc(sizeof(ze_taglib_file_object));
+	memset(&intern->zo, 0, sizeof(zend_object));
+
+	intern->file = NULL;
+	intern->refcount = 1;
+
+	zend_object_std_init(&intern->zo, class_type TSRMLS_CC);
+	zend_hash_copy(intern->zo.properties, &class_type->default_properties, (copy_ctor_func_t) zval_add_ref,
+					(void *) &tmp, sizeof(zval *));
+
+	retval.handle = zend_objects_store_put(intern,
+						NULL,
+						(zend_objects_free_object_storage_t) taglib_init_TagLib_File_free,
+						NULL TSRMLS_CC);
+
+	retval.handlers = zend_get_std_object_handlers();
+
+	return retval;
+
+}
+
+
+zend_object_value taglib_init_TagLib_new(zend_class_entry *class_type TSRMLS_DC) /* {{{ */
+{
 	ze_taglib_object *intern;
 	zval *tmp;
 	zend_object_value retval;
@@ -89,7 +134,7 @@ zend_object_value taglib_init_TagLib_File_new(zend_class_entry *class_type TSRML
 	intern = (ze_taglib_object*) emalloc(sizeof(ze_taglib_object));
 	memset(&intern->zo, 0, sizeof(zend_object));
 
-	intern->file = NULL;
+	intern->zo_file = NULL;
 	intern->tag = NULL;
 	intern->frame = NULL;
 
@@ -99,7 +144,7 @@ zend_object_value taglib_init_TagLib_File_new(zend_class_entry *class_type TSRML
 
 	retval.handle = zend_objects_store_put(intern,
 						NULL,
-						(zend_objects_free_object_storage_t) taglib_init_TagLib_File_free,
+						(zend_objects_free_object_storage_t) taglib_init_TagLib_free,
 						NULL TSRMLS_CC);
 
 	retval.handlers = zend_get_std_object_handlers();

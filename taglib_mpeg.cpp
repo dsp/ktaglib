@@ -43,7 +43,7 @@ ZEND_END_ARG_INFO()
 /*       {{{ Methods */
 PHP_METHOD(TagLib_MPEG_File, __construct)
 {
-	ze_taglib_object *intern = NULL;
+	ze_taglib_file_object *intern = NULL;
 	const char * filename = NULL;
 	int filename_len = 0;
 
@@ -51,7 +51,7 @@ PHP_METHOD(TagLib_MPEG_File, __construct)
 		return;
 	}
 
-	intern = (ze_taglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+	intern = (ze_taglib_file_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
 
 	if (filename_len == 0) {
 		php_error_docref(NULL TSRMLS_CC, E_WARNING, "Empty string as source");
@@ -75,13 +75,14 @@ PHP_METHOD(TagLib_MPEG_File, __construct)
 
 PHP_METHOD(TagLib_MPEG_File, getID3v1Tag)
 {
-	ze_taglib_object *intern = NULL;
+	ze_taglib_file_object *intern = NULL;
+	ze_taglib_object *nintern = NULL;
 	const char * filename = NULL;
 	int filename_len = 0;
 
 	TagLib::MPEG::File *file;
 
-	intern = (ze_taglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+	intern = (ze_taglib_file_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
 	file   = (TagLib::MPEG::File*) intern->file;
 	if (file->ID3v1Tag()) {
 		/* initialize the zend object and 
@@ -90,8 +91,9 @@ PHP_METHOD(TagLib_MPEG_File, getID3v1Tag)
 		   We don't have to call a constructor here as TagLib_MPEG_Tag doesn't have one
 		*/
 		object_init_ex(return_value, taglib_ce_ID3v1_Tag TSRMLS_CC);
-		intern = (ze_taglib_object*) zend_object_store_get_object(return_value TSRMLS_CC);
-		intern->tag = file->ID3v1Tag();
+		nintern = (ze_taglib_object*) zend_object_store_get_object(return_value TSRMLS_CC);
+		nintern->tag  = file->ID3v1Tag();
+		taglib_ref_class(nintern, intern);
 		return;
 	}
 
@@ -100,16 +102,18 @@ PHP_METHOD(TagLib_MPEG_File, getID3v1Tag)
 
 PHP_METHOD(TagLib_MPEG_File, getID3v2Tag)
 {
-	ze_taglib_object *intern = NULL;
+	ze_taglib_file_object *intern = NULL;
+	ze_taglib_object *nintern = NULL;
 
 	TagLib::MPEG::File *file;
 
-	intern = (ze_taglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+	intern = (ze_taglib_file_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
 	file   = (TagLib::MPEG::File*) intern->file;
 	if (file->ID3v2Tag()) {
 		object_init_ex(return_value, taglib_ce_ID3v2_Tag TSRMLS_CC);
-		intern = (ze_taglib_object*) zend_object_store_get_object(return_value TSRMLS_CC);
-		intern->tag = file->ID3v2Tag();
+		nintern = (ze_taglib_object*) zend_object_store_get_object(return_value TSRMLS_CC);
+		nintern->tag = file->ID3v2Tag();
+		taglib_ref_class(nintern, intern);
 		return;
 	}
 

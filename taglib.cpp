@@ -173,7 +173,7 @@ zend_module_entry taglib_module_entry = {
 	PHP_RINIT(taglib),     /* Replace with NULL if there is nothing to do at request start */
 	PHP_RSHUTDOWN(taglib), /* Replace with NULL if there is nothing to do at request end   */
 	PHP_MINFO(taglib),
-	"0.1", 
+	PHP_TAGLIB_VERSION,
 	STANDARD_MODULE_PROPERTIES
 };
 /* }}} */
@@ -188,10 +188,6 @@ ZEND_GET_MODULE(taglib)
 /* {{{ PHP_MINIT_FUNCTION */
 PHP_MINIT_FUNCTION(taglib)
 {
-	REGISTER_LONG_CONSTANT("TAGLIB_TYPE_NONE", 0, CONST_PERSISTENT | CONST_CS);
-	REGISTER_LONG_CONSTANT("TAGLIB_TYPE_ID3v1", 1, CONST_PERSISTENT | CONST_CS);
-	REGISTER_LONG_CONSTANT("TAGLIB_TYPE_ID3v2", 2, CONST_PERSISTENT | CONST_CS);
-
 	taglib_init_TagLib_Exceptions();
 	taglib_init_TagLib_MPEG_File();
 	taglib_init_TagLib_Tag();
@@ -208,9 +204,6 @@ PHP_MINIT_FUNCTION(taglib)
 /* {{{ PHP_MSHUTDOWN_FUNCTION */
 PHP_MSHUTDOWN_FUNCTION(taglib)
 {
-
-	/* add your stuff here */
-
 	return SUCCESS;
 }
 /* }}} */
@@ -219,8 +212,6 @@ PHP_MSHUTDOWN_FUNCTION(taglib)
 /* {{{ PHP_RINIT_FUNCTION */
 PHP_RINIT_FUNCTION(taglib)
 {
-	/* add your stuff here */
-
 	return SUCCESS;
 }
 /* }}} */
@@ -229,8 +220,6 @@ PHP_RINIT_FUNCTION(taglib)
 /* {{{ PHP_RSHUTDOWN_FUNCTION */
 PHP_RSHUTDOWN_FUNCTION(taglib)
 {
-	/* add your stuff here */
-
 	return SUCCESS;
 }
 /* }}} */

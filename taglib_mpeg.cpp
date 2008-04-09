@@ -77,8 +77,6 @@ PHP_METHOD(TagLib_MPEG_File, getID3v1Tag)
 {
 	ze_taglib_file_object *intern = NULL;
 	ze_taglib_object *nintern = NULL;
-	const char * filename = NULL;
-	int filename_len = 0;
 
 	TagLib::MPEG::File *file;
 

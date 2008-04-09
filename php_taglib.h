@@ -35,6 +35,8 @@
 #ifndef PHP_TAGLIB_H
 #define PHP_TAGLIB_H
 
+#define PHP_TAGLIB_VERSION "0.0.1"
+
 #ifdef  __cplusplus
 extern "C" {
 #endif

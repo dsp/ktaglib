@@ -74,9 +74,7 @@ void taglib_init_TagLib_File_free(void *object TSRMLS_DC) /* {{{ */
 	ze_taglib_file_object * intern = (ze_taglib_file_object *) object;
 
 	intern->refcount--;
-	php_printf("Refcounter %d\n", intern->refcount);
 	if (intern->refcount <= 0 && intern->file) {
-		php_printf("Do the actual free\n");
 		delete intern->file;
 	}
 
@@ -241,11 +239,16 @@ PHP_RSHUTDOWN_FUNCTION(taglib)
 /* {{{ PHP_MINFO_FUNCTION */
 PHP_MINFO_FUNCTION(taglib)
 {
+	char version[5];
+
+	sprintf(version, "%1d.%1d.%1d", 
+			TAGLIB_MAJOR_VERSION, TAGLIB_MINOR_VERSION, TAGLIB_PATCH_VERSION);
+
 	php_info_print_table_start();
-	php_info_print_table_header(1, "TagLib");
-	php_info_print_table_header(2, "Version", "$Id$");
-	php_info_print_table_header(2, "Copyright", "2008 David Soria Parra");
-	php_info_print_table_header(2, "Author", "David Soria Parra <dsp@php.net>");
+	php_info_print_table_row(2, "taglib Support", "enabled");
+	php_info_print_table_row(2, "taglib Version", version);
+	php_info_print_table_row(2, "Supported Formats", "ID3v1, ID3v2");
+	php_info_print_table_row(2, "Version", PHP_TAGLIB_VERSION);
 	php_info_print_table_end();
 
 }

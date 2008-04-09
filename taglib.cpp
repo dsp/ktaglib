@@ -64,8 +64,8 @@ void taglib_init_class(zend_class_entry ** ppce, zend_class_entry *pce, const ch
 
 void taglib_init_TagLib_Exceptions(void)
 {
-	taglib_init_class(&taglib_ce_FileNotFoundException, zend_exception_get_default(TSRMLS_C), "FileNotFoundException", NULL);
-	taglib_init_class(&taglib_ce_TagNotFoundException, zend_exception_get_default(TSRMLS_C), "TagNotFoundException", NULL);
+	taglib_init_class(&taglib_ce_FileNotFoundException, zend_exception_get_default(TSRMLS_C), "TagLib_FileNotFoundException", NULL);
+	taglib_init_class(&taglib_ce_TagNotFoundException, zend_exception_get_default(TSRMLS_C), "TagLib_TagNotFoundException", NULL);
 }
 
 

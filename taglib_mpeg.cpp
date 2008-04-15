@@ -46,6 +46,7 @@ PHP_METHOD(TagLib_MPEG_File, __construct)
 	ze_taglib_file_object *intern = NULL;
 	const char * filename = NULL;
 	int filename_len = 0;
+	struct stat sb;
 
 	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &filename, &filename_len) == FAILURE) {
 		return;
@@ -60,6 +61,11 @@ PHP_METHOD(TagLib_MPEG_File, __construct)
 
 	if (PG(safe_mode) && (!php_checkuid(filename, NULL, CHECKUID_CHECK_FILE_AND_DIR))) {
 		RETURN_FALSE;
+	}
+
+	if (VCWD_STAT(filename, &sb) != 0) {
+		zend_throw_exception(taglib_ce_FileNotFoundException, "File not found", 0 TSRMLS_CC);		
+		return;
 	}
 
 	if (php_check_open_basedir(filename TSRMLS_CC)) {

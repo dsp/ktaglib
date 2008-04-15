@@ -40,7 +40,8 @@ PHP_METHOD(TagLib_Tag, getTitle)
 	ze_taglib_object *intern = NULL;
 
 	intern = (ze_taglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
-	RETURN_STRING((char*) ((TagLib::Tag*) intern->tag)->title().toCString(), 1);
+	char* str = strdup((char*) ((TagLib::Tag*) intern->tag)->title().toCString());
+	RETURN_STRING(str, 1);
 }
 
 PHP_METHOD(TagLib_Tag, getArtist)
@@ -48,7 +49,8 @@ PHP_METHOD(TagLib_Tag, getArtist)
 	ze_taglib_object *intern = NULL;
 
 	intern = (ze_taglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
-	RETURN_STRING((char*) ((TagLib::Tag*) intern->tag)->artist().toCString(), 1);
+	char* str = strdup((char*) ((TagLib::Tag*) intern->tag)->artist().toCString());
+	RETURN_STRING(str, 1);
 }
 
 PHP_METHOD(TagLib_Tag, getAlbum)
@@ -56,7 +58,8 @@ PHP_METHOD(TagLib_Tag, getAlbum)
 	ze_taglib_object *intern = NULL;
 
 	intern = (ze_taglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
-	RETURN_STRING((char*) ((TagLib::Tag*) intern->tag)->album().toCString(), 1);
+	char* str = strdup((char*) ((TagLib::Tag*) intern->tag)->album().toCString());
+	RETURN_STRING(str, 1);
 }
 
 PHP_METHOD(TagLib_Tag, getComment)
@@ -64,7 +67,8 @@ PHP_METHOD(TagLib_Tag, getComment)
 	ze_taglib_object *intern = NULL;
 
 	intern = (ze_taglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
-	RETURN_STRING((char*) ((TagLib::Tag*) intern->tag)->comment().toCString(), 1);
+	char* str = strdup((char*) ((TagLib::Tag*) intern->tag)->comment().toCString());
+	RETURN_STRING(str, 1);
 }
 
 PHP_METHOD(TagLib_Tag, getGenre)
@@ -72,7 +76,8 @@ PHP_METHOD(TagLib_Tag, getGenre)
 	ze_taglib_object *intern = NULL;
 
 	intern = (ze_taglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
-	RETURN_STRING((char*) ((TagLib::Tag*) intern->tag)->genre().toCString(), 1);
+	char* str = strdup((char*) ((TagLib::Tag*) intern->tag)->genre().toCString());
+	RETURN_STRING(str, 1);
 }
 
 PHP_METHOD(TagLib_Tag, getYear)

@@ -96,7 +96,7 @@ PHP_METHOD(TagLib_MPEG_File, getID3v1Tag)
 		*/
 		object_init_ex(return_value, taglib_ce_ID3v1_Tag TSRMLS_CC);
 		nintern = (ze_taglib_object*) zend_object_store_get_object(return_value TSRMLS_CC);
-		nintern->tag  = file->ID3v1Tag();
+		nintern->tag = file->ID3v1Tag();
 		taglib_ref_class(nintern, intern);
 		return;
 	}

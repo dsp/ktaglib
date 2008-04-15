@@ -70,7 +70,7 @@ PHP_METHOD(TagLib_ID3v2_AttachedPictureFrame, savePicture)
 		return;
 	}
 	
-	intern = (ze_taglib_object*) zlend_object_store_get_object(getThis() TSRMLS_CC);
+	intern = (ze_taglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
 
 	stream = php_stream_open_wrapper(filename, "w+", ENFORCE_SAFE_MODE | REPORT_ERRORS, NULL);
 	if (!stream) {

@@ -35,6 +35,15 @@
 
 PHPAPI zend_class_entry * taglib_ce_ID3v2_Frame = NULL;
 
+PHP_METHOD(TagLib_ID3v2_Frame, getSize)
+{
+	ze_taglib_object *intern = NULL;
+
+	intern = (ze_taglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+
+	RETURN_LONG(((TagLib::ID3v2::Frame *) intern->frame)->size());
+}
+
 PHP_METHOD(TagLib_ID3v2_Frame, __toString)
 {
 	ze_taglib_object *intern = NULL;
@@ -48,6 +57,7 @@ PHP_METHOD(TagLib_ID3v2_Frame, __toString)
 
 static zend_function_entry TagLib_ID3v2_Frame_methods[] = {
 	PHP_ME(TagLib_ID3v2_Frame, __toString, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(TagLib_ID3v2_Frame, getSize, NULL, ZEND_ACC_PUBLIC)
 	{ NULL, NULL, NULL }
 };
 

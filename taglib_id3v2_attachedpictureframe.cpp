@@ -40,6 +40,15 @@ ZEND_BEGIN_ARG_INFO_EX(TagLib_ID3v2_AttachedPictureFrame_savePicture_args, ZEND_
   ZEND_ARG_INFO(0, filename)
 ZEND_END_ARG_INFO()
 
+PHP_METHOD(TagLib_ID3v2_AttachedPictureFrame, getDescription)
+{
+	ze_taglib_object *intern = NULL;
+
+	intern = (ze_taglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+
+	RETURN_STRING((char*) ((TagLib::ID3v2::AttachedPictureFrame *)intern->frame)->description().toCString(), 1);
+}
+
 PHP_METHOD(TagLib_ID3v2_AttachedPictureFrame, getMimeType)
 {
 	ze_taglib_object *intern = NULL;
@@ -61,7 +70,7 @@ PHP_METHOD(TagLib_ID3v2_AttachedPictureFrame, savePicture)
 		return;
 	}
 	
-	intern = (ze_taglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+	intern = (ze_taglib_object*) zlend_object_store_get_object(getThis() TSRMLS_CC);
 
 	stream = php_stream_open_wrapper(filename, "w+", ENFORCE_SAFE_MODE | REPORT_ERRORS, NULL);
 	if (!stream) {
@@ -77,6 +86,7 @@ PHP_METHOD(TagLib_ID3v2_AttachedPictureFrame, savePicture)
 
 static zend_function_entry TagLib_ID3v2_AttachedPictureFrame_methods[] = {
 	PHP_ME(TagLib_ID3v2_AttachedPictureFrame, getMimeType, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(TagLib_ID3v2_AttachedPictureFrame, getDescription, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(TagLib_ID3v2_AttachedPictureFrame, savePicture, TagLib_ID3v2_AttachedPictureFrame_savePicture_args, ZEND_ACC_PUBLIC)
 	{ NULL, NULL, NULL }
 };

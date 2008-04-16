@@ -82,6 +82,7 @@ PHP_METHOD(TagLib_ID3v2_AttachedPictureFrame, savePicture)
 	php_stream_write(stream, (char*) buf.data(), buf.size());
 	
 	php_stream_close(stream);
+	RETURN_TRUE;
 }
 
 static zend_function_entry TagLib_ID3v2_AttachedPictureFrame_methods[] = {

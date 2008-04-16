@@ -1,0 +1,3 @@
+&reference.taglib.id3v2attachedpictureframe.getDescription;
+&reference.taglib.id3v2attachedpictureframe.getMimeType;
+&reference.taglib.id3v2attachedpictureframe.savePicture;

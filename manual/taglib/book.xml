@@ -13,7 +13,7 @@
   </para>
   <note>
    <para>
-     At the moment taglib is able to read ID3v1 and ID3v2 tags. 
+     At the moment taglib is able to read ID3v1 and ID3v2 tags.
      There is no write support at the moment.
    </para>
   </note>

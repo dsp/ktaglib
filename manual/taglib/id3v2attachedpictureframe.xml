@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!-- $Revision:$ -->
-<reference xml:id="class.id3v2attachedpictureframe" 
-	   xmlns="http://docbook.org/ns/docbook" 
-	   xmlns:xlink="http://www.w3.org/1999/xlink" 
+<reference xml:id="class.id3v2attachedpictureframe"
+	   xmlns="http://docbook.org/ns/docbook"
+	   xmlns:xlink="http://www.w3.org/1999/xlink"
 	   xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>The Taglib ID3v2_AttachedPictureFrame class</title>
   <titleabbrev>Taglib_ID3v2_AttachedPictureFrame</titleabbrev>

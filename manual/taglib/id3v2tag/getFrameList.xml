@@ -1,36 +1,26 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!-- $Revision:$ -->
-<refentry xml:id="id3v2frame.getFrameList" xmlns="http://docbook.org/ns/docbook">
+<refentry xml:id="id3v2tag.getFrameList" xmlns="http://docbook.org/ns/docbook">
   <refnamediv>
-    <refname>TagLib_ID3v2_Frame::getFrameList</refname>
-    <refpurpose>Get's a list of frame objects for the id3v2 frames</refpurpose>
+    <refname>TagLib_ID3v2_tag::getFrameList</refname>
+    <refpurpose>Returns an array of ID3v2 frames, associated with the ID3v2 tag</refpurpose>
   </refnamediv>
   <refsect1 role="description">
     &reftitle.description;
     <methodsynopsis>
       <modifier>public</modifier>
-      <type>array</type>
+      <type>integer</type>
       <methodname>TagLib_ID3v2_Frame::getFrameList</methodname>
       <void/>
     </methodsynopsis>
     <para>
-      Returns an array of frames specified in the ID3v2 tag. The framename defined
-      in the ID3v2 format is used as a key, while the value is a TagLib_ID3v2_Frame object
-      or any subclass of this class.
-    </para>
-    <para>
-      Notice that frame names are usualy returned as specified in ID3v2.3 even the tag
-      version is 2.2.
-    </para>
-    <para>
-      The attached picture frame is differs from this behaviour. The PIC frame from ID3v2.2
-      frames is not converted into the APIC formats.
+      Returns an array of ID3v2 frames, associated with the ID3v2 tag.
     </para>
   </refsect1>
   <refsect1 role="returnvalues">
     &reftitle.returnvalues;
     <para>
-      Returns an array with framename as key and a TagLib_ID3v2_Frame object as the value.
+      Return an array of TagLib_ID3v2_Frame objects
     </para>
   </refsect1>
 </refentry>

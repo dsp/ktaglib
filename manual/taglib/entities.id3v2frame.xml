@@ -1,0 +1,3 @@
+&reference.taglib.id3v2frame.getFrameList;
+&reference.taglib.id3v2frame.getSize;
+&reference.taglib.id3v2frame.toString;

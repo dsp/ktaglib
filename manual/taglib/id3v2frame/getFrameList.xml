@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- $Revision:$ -->
+<refentry xml:id="id3v2frame.getFrameList" xmlns="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>TagLib_ID3v2_Frame::getFrameList</refname>
+    <refpurpose>Get's a list of frame objects for the id3v2 frames</refpurpose>
+  </refnamediv>
+  <refsect1 role="description">
+    &reftitle.description;
+    <methodsynopsis>
+      <modifier>public</modifier>
+      <type>array</type>
+      <methodname>TagLib_ID3v2_Frame::getFrameList</methodname>
+      <void/>
+    </methodsynopsis>
+    <para>
+      Returns an array of frames specified in the ID3v2 tag. The framename defined
+      in the ID3v2 format is used as a key, while the value is a TagLib_ID3v2_Frame object
+      or any subclass of this class. 
+    </para>
+    <para>
+      Notice that frame names are usualy returned as specified in ID3v2.3 even the tag
+      version is 2.2.
+    </para>
+    <para>
+      The attached picture frame is differs from this behaviour. The PIC frame from ID3v2.2
+      frames is not converted into the APIC formats.
+    </para>
+  </refsect1>
+  <refsect1 role="returnvalues">
+    &reftitle.returnvalues;
+    <para>
+      Returns an array with framename as key and a TagLib_ID3v2_Frame object as the value.
+    </para>
+  </refsect1>
+</refentry>
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:1
+sgml-indent-data:t
+indent-tabs-mode:nil
+sgml-parent-document:nil
+sgml-default-dtd-file:"../../../../manual.ced"
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+vim600: syn=xml fen fdm=syntax fdl=2 si
+vim: et tw=78 syn=sgml
+vi: ts=1 sw=1
+-->

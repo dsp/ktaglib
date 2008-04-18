@@ -101,7 +101,7 @@ PHP_METHOD(TagLib_MPEG_File, getID3v1Tag)
 		return;
 	}
 
-	zend_throw_exception(taglib_ce_TagNotFoundException, "No ID3v1 Tag found", 0 TSRMLS_CC);
+	RETURN_FALSE;
 }
 
 PHP_METHOD(TagLib_MPEG_File, getID3v2Tag)
@@ -121,7 +121,7 @@ PHP_METHOD(TagLib_MPEG_File, getID3v2Tag)
 		return;
 	}
 
-	zend_throw_exception(taglib_ce_TagNotFoundException, "No ID3v2 Tag found", 0 TSRMLS_CC);
+	RETURN_FALSE;
 }
 
 static zend_function_entry TagLib_File_MPEG_methods[] = {

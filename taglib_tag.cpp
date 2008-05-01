@@ -33,6 +33,16 @@
 #include "php_taglib.h"
 #include "taglibrary.h"
 
+static
+ZEND_BEGIN_ARG_INFO_EX(TagLib_Tag_SetString_args, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 1)
+  ZEND_ARG_INFO(0, string)
+ZEND_END_ARG_INFO()
+
+static
+ZEND_BEGIN_ARG_INFO_EX(TagLib_Tag_SetDouble_args, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 1)
+  ZEND_ARG_INFO(0, integer)
+ZEND_END_ARG_INFO()
+
 PHPAPI zend_class_entry * taglib_ce_Tag = NULL;
 
 PHP_METHOD(TagLib_Tag, getTitle)
@@ -96,6 +106,102 @@ PHP_METHOD(TagLib_Tag, getTrack)
 	RETURN_LONG(((TagLib::Tag*) intern->tag)->track());
 }
 
+PHP_METHOD(TagLib_Tag, setTitle)
+{
+	int filename_len;
+	char * filename;
+	ze_taglib_object * intern = NULL;
+
+	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &filename, &filename_len) == FAILURE) {
+		return;
+	}
+
+	intern = (ze_taglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+	((TagLib::Tag*)intern->tag)->setTitle(filename);
+}
+
+PHP_METHOD(TagLib_Tag, setArtist)
+{
+	int filename_len;
+	char * filename;
+	ze_taglib_object * intern = NULL;
+
+	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &filename, &filename_len) == FAILURE) {
+		return;
+	}
+
+	intern = (ze_taglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+	((TagLib::Tag*)intern->tag)->setArtist(filename);
+}
+
+PHP_METHOD(TagLib_Tag, setAlbum)
+{
+	int filename_len;
+	char * filename;
+	ze_taglib_object * intern = NULL;
+
+	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &filename, &filename_len) == FAILURE) {
+		return;
+	}
+
+	intern = (ze_taglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+	((TagLib::Tag*)intern->tag)->setAlbum(filename);
+}
+
+PHP_METHOD(TagLib_Tag, setComment)
+{
+	int filename_len;
+	char * filename;
+	ze_taglib_object * intern = NULL;
+
+	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &filename, &filename_len) == FAILURE) {
+		return;
+	}
+
+	intern = (ze_taglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+	((TagLib::Tag*)intern->tag)->setComment(filename);
+}
+
+PHP_METHOD(TagLib_Tag, setGenre)
+{
+	int filename_len;
+	char * filename;
+	ze_taglib_object * intern = NULL;
+
+	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &filename, &filename_len) == FAILURE) {
+		return;
+	}
+
+	intern = (ze_taglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+	((TagLib::Tag*)intern->tag)->setGenre(filename);
+}
+
+PHP_METHOD(TagLib_Tag, setYear)
+{
+	int year;
+	ze_taglib_object * intern = NULL;
+
+	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "l", &year) == FAILURE) {
+		return;
+	}
+
+	intern = (ze_taglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+	((TagLib::Tag*)intern->tag)->setYear(year);
+}
+
+PHP_METHOD(TagLib_Tag, setTrack)
+{
+	int year;
+	ze_taglib_object * intern = NULL;
+
+	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "l", &year) == FAILURE) {
+		return;
+	}
+
+	intern = (ze_taglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+	((TagLib::Tag*)intern->tag)->setTrack(year);
+}
+
 PHP_METHOD(TagLib_Tag, isEmpty)
 {
 	ze_taglib_object *intern = NULL;
@@ -113,15 +219,22 @@ PHP_METHOD(TagLib_Tag, __construct)
 }
 
 static zend_function_entry TagLib_Tag_methods[] = {
-	PHP_ME(TagLib_Tag, __construct, NULL, /**/ZEND_ACC_PRIVATE)
-	PHP_ME(TagLib_Tag, getTitle, NULL, /**/ZEND_ACC_PUBLIC)
-	PHP_ME(TagLib_Tag, getArtist, NULL, /**/ZEND_ACC_PUBLIC)
-	PHP_ME(TagLib_Tag, getAlbum, NULL, /**/ZEND_ACC_PUBLIC)
-	PHP_ME(TagLib_Tag, getComment, NULL, /**/ZEND_ACC_PUBLIC)
-	PHP_ME(TagLib_Tag, getGenre, NULL, /**/ZEND_ACC_PUBLIC)
-	PHP_ME(TagLib_Tag, getYear, NULL, /**/ZEND_ACC_PUBLIC)
-	PHP_ME(TagLib_Tag, getTrack, NULL, /**/ZEND_ACC_PUBLIC)
-	PHP_ME(TagLib_Tag, isEmpty, NULL, /**/ZEND_ACC_PUBLIC)
+	PHP_ME(TagLib_Tag, __construct, NULL, ZEND_ACC_PRIVATE)
+	PHP_ME(TagLib_Tag, getTitle,    NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(TagLib_Tag, getArtist,   NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(TagLib_Tag, getAlbum,    NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(TagLib_Tag, getComment,  NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(TagLib_Tag, getGenre,    NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(TagLib_Tag, getYear,     NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(TagLib_Tag, getTrack,    NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(TagLib_Tag, setTitle,    TagLib_Tag_SetString_args, ZEND_ACC_PUBLIC)
+	PHP_ME(TagLib_Tag, setArtist,   TagLib_Tag_SetString_args, ZEND_ACC_PUBLIC)
+	PHP_ME(TagLib_Tag, setAlbum,    TagLib_Tag_SetString_args, ZEND_ACC_PUBLIC)
+	PHP_ME(TagLib_Tag, setComment,  TagLib_Tag_SetString_args, ZEND_ACC_PUBLIC)
+	PHP_ME(TagLib_Tag, setGenre,    TagLib_Tag_SetString_args, ZEND_ACC_PUBLIC)
+	PHP_ME(TagLib_Tag, setYear,     TagLib_Tag_SetDouble_args, ZEND_ACC_PUBLIC)
+	PHP_ME(TagLib_Tag, setTrack,    TagLib_Tag_SetDouble_args, ZEND_ACC_PUBLIC)
+	PHP_ME(TagLib_Tag, isEmpty,     NULL, ZEND_ACC_PUBLIC)
 	{ NULL, NULL, NULL }
 };
 

@@ -124,10 +124,19 @@ PHP_METHOD(TagLib_MPEG_File, getID3v2Tag)
 	RETURN_FALSE;
 }
 
+PHP_METHOD(TagLib_MPEG_File, save)
+{
+	ze_taglib_file_object *intern = NULL;
+
+	intern = (ze_taglib_file_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+	((TagLib::MPEG::File*) intern->file)->save();
+}
+
 static zend_function_entry TagLib_File_MPEG_methods[] = {
 	PHP_ME(TagLib_MPEG_File, __construct, TagLib_MPEG_File___construct_args, /**/ZEND_ACC_PUBLIC)
 	PHP_ME(TagLib_MPEG_File, getID3v1Tag, NULL, /**/ZEND_ACC_PUBLIC)
 	PHP_ME(TagLib_MPEG_File, getID3v2Tag, NULL, /**/ZEND_ACC_PUBLIC)
+	PHP_ME(TagLib_MPEG_File, save, NULL, ZEND_ACC_PUBLIC)
 	{ NULL, NULL, NULL }
 };
 

@@ -57,8 +57,9 @@ if test "$PHP_TAGLIB" != "no"; then
   AC_DEFINE(HAVE_TAGLIB, 1, [ ])
 
   PHP_NEW_EXTENSION(taglib, taglib.cpp taglib_mpeg.cpp taglib_tag.cpp \
-  			    taglib_id3v1_tag.cpp \
-			    taglib_id3v2_tag.cpp taglib_id3v2_frame.cpp taglib_id3v2_attachedpictureframe.cpp, $ext_shared)
+                            taglib_id3v1_tag.cpp \
+                            taglib_id3v2_tag.cpp taglib_id3v2_frame.cpp \ 
+                            taglib_id3v2_attachedpictureframe.cpp taglib_id3v2_commentsframe.cpp, $ext_shared)
 
 fi
 

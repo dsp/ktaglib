@@ -10,6 +10,7 @@
 #include <id3v1tag.h>
 #include <id3v2tag.h>
 #include <attachedpictureframe.h>
+#include <commentsframe.h>
 
 /* Extends zend object */
 typedef struct _ze_taglib_file_object {

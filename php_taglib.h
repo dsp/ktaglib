@@ -64,6 +64,7 @@ extern PHPAPI zend_class_entry *taglib_ce_ID3v1_Tag;
 extern PHPAPI zend_class_entry *taglib_ce_ID3v2_Tag;
 extern PHPAPI zend_class_entry *taglib_ce_ID3v2_Frame;
 extern PHPAPI zend_class_entry *taglib_ce_ID3v2_PictureFrame;
+extern PHPAPI zend_class_entry *taglib_ce_ID3v2_CommentsFrame;
 
 extern zend_module_entry taglib_module_entry;
 #define phpext_taglib_ptr &taglib_module_entry
@@ -119,6 +120,7 @@ void taglib_init_TagLib_ID3v1_Tag(void);
 void taglib_init_TagLib_ID3v2_Tag(void);
 void taglib_init_TagLib_ID3v2_Frame(void);
 void taglib_init_TagLib_ID3v2_PictureFrame(void);
+void taglib_init_TagLib_ID3v2_CommentsFrame(void);
 
 /* mirrored PHP Constants */
 #define TAGLIB_TYPE_NONE 0

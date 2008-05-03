@@ -56,6 +56,8 @@ PHP_METHOD(TagLib_ID3v2_Tag, getFrameList)
 		TagLib::ID3v2::Frame* f = (TagLib::ID3v2::Frame*)iter->second.front();
 		if (strcmp(f->frameID().data(), "APIC") == 0) {
 			object_init_ex(obj, taglib_ce_ID3v2_PictureFrame TSRMLS_CC);
+		} else if (strcmp(f->frameID().data(), "COMM") == 0) {
+			object_init_ex(obj, taglib_ce_ID3v2_CommentsFrame TSRMLS_CC);
 		} else {
 			object_init_ex(obj, taglib_ce_ID3v2_Frame TSRMLS_CC);
 		}

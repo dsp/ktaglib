@@ -54,9 +54,9 @@ PHP_METHOD(TagLib_ID3v2_Tag, getFrameList)
 		key[iter->first.size()] = '\0';
 
 		TagLib::ID3v2::Frame* f = (TagLib::ID3v2::Frame*)iter->second.front();
-		if (strcmp(f->frameID().data(), "APIC") == 0) {
+		if (f->frameID() == "APIC") {
 			object_init_ex(obj, taglib_ce_ID3v2_PictureFrame TSRMLS_CC);
-		} else if (strcmp(f->frameID().data(), "COMM") == 0) {
+		} else if (f->frameID() == "COMM") {
 			object_init_ex(obj, taglib_ce_ID3v2_CommentsFrame TSRMLS_CC);
 		} else {
 			object_init_ex(obj, taglib_ce_ID3v2_Frame TSRMLS_CC);

@@ -60,7 +60,7 @@ PHP_METHOD(TagLib_ID3v2_AttachedPictureFrame, getMimeType)
 
 PHP_METHOD(TagLib_ID3v2_AttachedPictureFrame, savePicture)
 {
-        char * filename = NULL;
+	char * filename = NULL;
 	int filename_len = 0;
 	php_stream * stream;
 	TagLib::ByteVector buf;

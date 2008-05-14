@@ -50,8 +50,14 @@ PHP_METHOD(TagLib_Tag, getTitle)
 	ze_taglib_object *intern = NULL;
 
 	intern = (ze_taglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
-	char* str = strdup((char*) ((TagLib::Tag*) intern->tag)->title().toCString());
-	RETURN_STRING(str, 1);
+
+	/*
+               RETURN_STRING( xyz, 1 ); tells the engine to take a copy of the string
+               so it can nuke it when it needs to. Previously the string was duplicated
+               twice using strdup and then giving 1 as second parameter to RETURN_STRING
+	*/
+	char* str = estrdup((char*) ((TagLib::Tag*) intern->tag)->title().toCString());
+	RETURN_STRING(str, 0);
 }
 
 PHP_METHOD(TagLib_Tag, getArtist)
@@ -59,8 +65,8 @@ PHP_METHOD(TagLib_Tag, getArtist)
 	ze_taglib_object *intern = NULL;
 
 	intern = (ze_taglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
-	char* str = strdup((char*) ((TagLib::Tag*) intern->tag)->artist().toCString());
-	RETURN_STRING(str, 1);
+	char* str = estrdup((char*) ((TagLib::Tag*) intern->tag)->artist().toCString());
+	RETURN_STRING(str, 0);
 }
 
 PHP_METHOD(TagLib_Tag, getAlbum)
@@ -68,8 +74,8 @@ PHP_METHOD(TagLib_Tag, getAlbum)
 	ze_taglib_object *intern = NULL;
 
 	intern = (ze_taglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
-	char* str = strdup((char*) ((TagLib::Tag*) intern->tag)->album().toCString());
-	RETURN_STRING(str, 1);
+	char* str = estrdup((char*) ((TagLib::Tag*) intern->tag)->album().toCString());
+	RETURN_STRING(str, 0);
 }
 
 PHP_METHOD(TagLib_Tag, getComment)
@@ -77,8 +83,8 @@ PHP_METHOD(TagLib_Tag, getComment)
 	ze_taglib_object *intern = NULL;
 
 	intern = (ze_taglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
-	char* str = strdup((char*) ((TagLib::Tag*) intern->tag)->comment().toCString());
-	RETURN_STRING(str, 1);
+	char* str = estrdup((char*) ((TagLib::Tag*) intern->tag)->comment().toCString());
+	RETURN_STRING(str, 0);
 }
 
 PHP_METHOD(TagLib_Tag, getGenre)
@@ -86,8 +92,8 @@ PHP_METHOD(TagLib_Tag, getGenre)
 	ze_taglib_object *intern = NULL;
 
 	intern = (ze_taglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
-	char* str = strdup((char*) ((TagLib::Tag*) intern->tag)->genre().toCString());
-	RETURN_STRING(str, 1);
+	char* str = estrdup((char*) ((TagLib::Tag*) intern->tag)->genre().toCString());
+	RETURN_STRING(str, 0);
 }
 
 PHP_METHOD(TagLib_Tag, getYear)

@@ -50,9 +50,9 @@ PHP_METHOD(TagLib_ID3v2_Frame, __toString)
 
 	intern = (ze_taglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
 
-	char* str = strdup((char*) ((TagLib::ID3v2::Frame *) intern->frame)->toString().toCString());
+       char* str = estrdup((char*) ((TagLib::ID3v2::Frame *) intern->frame)->toString().toCString());
 
-	RETURN_STRING(str, 1);
+       RETURN_STRING(str, 0);
 }
 
 static zend_function_entry TagLib_ID3v2_Frame_methods[] = {

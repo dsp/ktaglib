@@ -11,6 +11,7 @@
 #include <id3v2tag.h>
 #include <attachedpictureframe.h>
 #include <commentsframe.h>
+#include <mpegproperties.h>
 
 /* Extends zend object */
 typedef struct _ze_taglib_file_object {
@@ -24,6 +25,7 @@ typedef struct _ze_taglib_object {
 	ze_taglib_file_object * zo_file;
 	TagLib::Tag *tag;
 	TagLib::ID3v2::Frame *frame;
+	TagLib::MPEG::Properties *properties;
 } ze_taglib_object;
 
 void taglib_ref_class(ze_taglib_object*, ze_taglib_file_object*);

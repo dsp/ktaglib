@@ -148,7 +148,7 @@ zend_object_value taglib_init_TagLib_new(zend_class_entry *class_type TSRMLS_DC)
 						NULL TSRMLS_CC);
 
 	retval.handlers = zend_get_std_object_handlers();
-       retval.handlers->clone_obj = NULL;
+	retval.handlers->clone_obj = NULL;
 	return retval;
 
 }

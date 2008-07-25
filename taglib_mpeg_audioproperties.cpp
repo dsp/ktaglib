@@ -41,7 +41,7 @@ PHP_METHOD(TagLib_MPEG_AudioProperties, getLength)
 	ze_taglib_object *intern = NULL;
 
 	intern = (ze_taglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
-	
+
 	RETURN_LONG(intern->properties->length());
 }
 
@@ -50,7 +50,7 @@ PHP_METHOD(TagLib_MPEG_AudioProperties, getBitrate)
 	ze_taglib_object *intern = NULL;
 
 	intern = (ze_taglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
-	
+
 	RETURN_LONG(intern->properties->bitrate());
 }
 
@@ -59,7 +59,7 @@ PHP_METHOD(TagLib_MPEG_AudioProperties, getSampleRate)
 	ze_taglib_object *intern = NULL;
 
 	intern = (ze_taglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
-	
+
 	RETURN_LONG(intern->properties->sampleRate());
 }
 
@@ -72,11 +72,85 @@ PHP_METHOD(TagLib_MPEG_AudioProperties, getChannels)
 	RETURN_LONG(intern->properties->channels());
 }
 
+PHP_METHOD(TagLib_MPEG_AudioProperties, getLayer)
+{
+	ze_taglib_object *intern = NULL;
+
+	intern = (ze_taglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+
+	RETURN_LONG(intern->properties->layer());
+}
+
+PHP_METHOD(TagLib_MPEG_AudioProperties, isProtectionEnabled)
+{
+	ze_taglib_object *intern = NULL;
+
+	intern = (ze_taglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+
+        if(intern->properties->layer()) {
+		RETURN_TRUE;
+	}
+
+	RETURN_FALSE;
+}
+
+PHP_METHOD(TagLib_MPEG_AudioProperties, isCopyrighted)
+{
+	ze_taglib_object *intern = NULL;
+
+	intern = (ze_taglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+
+        if(intern->properties->isCopyrighted()) {
+		RETURN_TRUE;
+	}
+
+	RETURN_FALSE;
+}
+
+PHP_METHOD(TagLib_MPEG_AudioProperties, isOriginal)
+{
+	ze_taglib_object *intern = NULL;
+
+	intern = (ze_taglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+
+        if(intern->properties->isOriginal()) {
+		RETURN_TRUE;
+	}
+
+	RETURN_FALSE;
+}
+
+PHP_METHOD(TagLib_MPEG_AudioProperties, getVersion)
+{
+	ze_taglib_object *intern = NULL;
+
+	intern = (ze_taglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+
+	switch(intern->properties->version()) {
+	case TagLib::MPEG::Header::Version1:
+		RETURN_LONG(TagLib::MPEG::Header::Version1);
+		break;
+	case TagLib::MPEG::Header::Version2:
+		RETURN_LONG(TagLib::MPEG::Header::Version2);
+		break;
+	case TagLib::MPEG::Header::Version2_5:
+		RETURN_LONG(TagLib::MPEG::Header::Version2_5);
+		break;
+	}
+
+	RETURN_NULL();
+}
+
+
 static zend_function_entry TagLib_MPEG_AudioProperties_methods[] = {
 	PHP_ME(TagLib_MPEG_AudioProperties, getLength, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(TagLib_MPEG_AudioProperties, getBitrate, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(TagLib_MPEG_AudioProperties, getSampleRate, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(TagLib_MPEG_AudioProperties, getChannels, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(TagLib_MPEG_AudioProperties, getLayer, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(TagLib_MPEG_AudioProperties, isProtectionEnabled, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(TagLib_MPEG_AudioProperties, isOriginal, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(TagLib_MPEG_AudioProperties, getVersion, NULL, ZEND_ACC_PUBLIC)
 	{ NULL, NULL, NULL }
 };
 

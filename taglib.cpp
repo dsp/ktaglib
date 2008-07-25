@@ -199,6 +199,7 @@ PHP_MINIT_FUNCTION(taglib)
 	taglib_init_TagLib_ID3v2_PictureFrame();
 	taglib_init_TagLib_ID3v2_CommentsFrame();
 	taglib_init_TagLib_MPEG_AudioProperties();
+	taglib_init_TagLib_MPEG_Header();
 
 	return SUCCESS;
 }

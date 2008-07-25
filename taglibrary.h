@@ -12,6 +12,7 @@
 #include <attachedpictureframe.h>
 #include <commentsframe.h>
 #include <mpegproperties.h>
+#include <mpegheader.h>
 
 /* Extends zend object */
 typedef struct _ze_taglib_file_object {

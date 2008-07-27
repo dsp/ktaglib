@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!-- $Revision:$ -->
-<refentry xml:id="mpegfile.getId3v2Tag" xmlns="http://docbook.org/ns/docbook">
+<refentry xml:id="id3v2tag.getFrameList" xmlns="http://docbook.org/ns/docbook">
   <refnamediv>
-    <refname>TagLib_MPEG_File::getID3v2Tag</refname>
-    <refpurpose>Returns a ID3v2 object</refpurpose>
+    <refname>TagLib_ID3v2_Tag::getFrameList</refname>
+    <refpurpose>Returns an array of ID3v2 frames, associated with the ID3v2 tag</refpurpose>
   </refnamediv>
   <refsect1 role="description">
     &reftitle.description;
     <methodsynopsis>
       <modifier>public</modifier>
-      <type>TagLib_ID3v2_Tag</type>
-      <methodname>TagLib_MPEG_File::getID3v2Tag</methodname>
-      <void />
+      <type>integer</type>
+      <methodname>TagLib_ID3v2_Tag::getFrameList</methodname>
+      <void/>
     </methodsynopsis>
     <para>
-      Returns a ID3v2 object for the mpeg file. If no ID3v2 Tag is present, an
-      TagLib_TagNotFoundException is thrown.
+      Returns an array of ID3v2 frames, associated with the ID3v2 tag.
     </para>
   </refsect1>
   <refsect1 role="returnvalues">
     &reftitle.returnvalues;
     <para>
-      Returns the TagLib_ID3v2_Tag object of the MPEG file
+      Return an array of TagLib_ID3v2_Frame objects
     </para>
   </refsect1>
 </refentry>

@@ -1,21 +1,12 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<!-- $Revision:$ -->
+<!-- $Revision: 1.18 $ -->
 
-<chapter xml:id="taglib.setup" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
- &reftitle.setup;
+<reference xml:id="ref.taglib" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <title>TagLib &Functions;</title>
 
- <!-- {{{ Requirements -->
- <section xml:id="taglib.requirements">
-  &reftitle.required;
-  &no.requirement;
- </section>
- <!-- }}} -->
+ &reference.taglib.entities.functions;
 
- <!-- {{{ Installation -->
- &reference.taglib.configure;
- <!-- }}} -->
-
-</chapter>
+</reference>
 
 <!-- Keep this comment at the end of the file
 Local variables:

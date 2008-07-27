@@ -1,8 +1,0 @@
-&reference.taglib.tag.getAlbum;
-&reference.taglib.tag.getArtist;
-&reference.taglib.tag.getComment;
-&reference.taglib.tag.getGenre;
-&reference.taglib.tag.getTitle;
-&reference.taglib.tag.getTrack;
-&reference.taglib.tag.getYear;
-&reference.taglib.tag.isEmpty;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!-- $Revision:$ -->
 <!-- Purpose: utilspec.audio -->
-<!-- Membership: pecl -->
+<!-- Membership: pecl, external -->
 
 <book xml:id="book.taglib" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
  <title>TagLib</title>
@@ -24,11 +24,8 @@
   </note>
  </preface>
  &reference.taglib.setup;
- &reference.taglib.examples;
- &reference.taglib.tag;
- &reference.taglib.mpegfile;
- &reference.taglib.id3v2frame;
- &reference.taglib.id3v2attachedpictureframe;
+ &reference.taglib.constants;
+ &reference.taglib.reference;
 </book>
 
 <!-- Keep this comment at the end of the file

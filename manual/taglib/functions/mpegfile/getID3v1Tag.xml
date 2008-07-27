@@ -17,15 +17,12 @@
     Returns an object that represents an ID3v1 tag, which can be used
     to get information about the ID3v1 tag.
   </para>
-  <para>
-    On error an TagLib_TagNotFoundException is thrown.
-  </para>
  </refsect1>
 
  <refsect1 role="returnvalues">
   &reftitle.returnvalues;
   <para>
-    Returns an TagLib_MPEG_ID3v1Tag object or throws an exception.
+    Returns an TagLib_MPEG_ID3v1Tag object or false if there is no ID3v1 tag.
   </para>
  </refsect1>
 </refentry>

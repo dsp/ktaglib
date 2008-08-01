@@ -2,14 +2,14 @@ dnl
 dnl $ Id: $
 dnl
 
-PHP_ARG_WITH(taglib, This extension requires the TagLib Library version 1.4
-	  or above and a working pkg-config installation.,[  --with-taglib[=DIR]  With taglib support])
+PHP_ARG_WITH(ktaglib, This extension requires the KDE TagLib Library version 1.4
+	  or above and a working pkg-config installation.,[  --with-ktaglib[=DIR]  With kde taglib support])
 
 
-if test "$PHP_TAGLIB" != "no"; then
+if test "$PHP_KTAGLIB" != "no"; then
   PHP_REQUIRE_CXX
   AC_LANG_CPLUSPLUS
-  PHP_ADD_LIBRARY(stdc++,,TAGLIB_SHARED_LIBADD)
+  PHP_ADD_LIBRARY(stdc++,,KTAGLIB_SHARED_LIBADD)
 
   
   if test -z "$PKG_CONFIG"
@@ -33,7 +33,7 @@ if test "$PHP_TAGLIB" != "no"; then
   fi
 
   PHP_EVAL_INCLINE(`$PKG_CONFIG --cflags-only-I taglib`)
-  PHP_EVAL_LIBLINE(`$PKG_CONFIG --libs taglib`, TAGLIB_SHARED_LIBADD)
+  PHP_EVAL_LIBLINE(`$PKG_CONFIG --libs taglib`, KTAGLIB_SHARED_LIBADD)
 
   export OLD_CPPFLAGS="$CPPFLAGS"
   export CPPFLAGS="$CPPFLAGS $INCLUDES -DHAVE_TAGLIB"
@@ -53,14 +53,14 @@ if test "$PHP_TAGLIB" != "no"; then
   export CPPFLAGS="$OLD_CPPFLAGS"
 
 
-  PHP_SUBST(TAGLIB_SHARED_LIBADD)
+  PHP_SUBST(KTAGLIB_SHARED_LIBADD)
   AC_DEFINE(HAVE_TAGLIB, 1, [ ])
 
-  PHP_NEW_EXTENSION(taglib, taglib.cpp taglib_mpeg.cpp taglib_tag.cpp \
-                            taglib_id3v1_tag.cpp \
-                            taglib_id3v2_tag.cpp taglib_id3v2_frame.cpp \ 
-                            taglib_id3v2_attachedpictureframe.cpp taglib_id3v2_commentsframe.cpp \
-                            taglib_mpeg_audioproperties.cpp taglib_mpeg_header.cpp, $ext_shared)
+  PHP_NEW_EXTENSION(ktaglib, ktaglib.cpp ktaglib_mpeg.cpp ktaglib_tag.cpp \
+                             ktaglib_id3v1_tag.cpp \
+                             ktaglib_id3v2_tag.cpp ktaglib_id3v2_frame.cpp \ 
+                             ktaglib_id3v2_attachedpictureframe.cpp ktaglib_id3v2_commentsframe.cpp \
+                             ktaglib_mpeg_audioproperties.cpp ktaglib_mpeg_header.cpp, $ext_shared)
 
 fi
 

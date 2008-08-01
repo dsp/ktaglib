@@ -33,5 +33,5 @@
 ]>
 
 <book id='manual' lang='en'>
-   &reference.taglib.reference;
+   &reference.ktaglib.reference;
 </book>

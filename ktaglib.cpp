@@ -118,8 +118,9 @@ zend_object_value ktaglib_init_KTaglib_File_new(zend_class_entry *class_type TSR
 
 	retval.handlers = zend_get_std_object_handlers();
 
-       /* Preventing object cloning is easier than creating the handlers for clone :) */
-       retval.handlers->clone_obj = NULL;
+	/* Preventing object cloning is easier than creating the handlers for clone :) */
+	retval.handlers->clone_obj = NULL;
+
 	return retval;
 
 }

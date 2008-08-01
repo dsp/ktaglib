@@ -1,0 +1,4 @@
+2008-08-01  David Soria Parra  <dsp@php.net>
+
+	* package.xml, php_ktaglib.h: KTaglib Version 0.0.1a1.
+

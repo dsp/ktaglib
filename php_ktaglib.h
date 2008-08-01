@@ -35,7 +35,7 @@
 #ifndef PHP_KTAGLIB_H
 #define PHP_KTAGLIB_H
 
-#define PHP_KTAGLIB_VERSION "0.0.1"
+#define PHP_KTAGLIB_VERSION "0.0.1a1"
 
 #ifdef  __cplusplus
 extern "C" {

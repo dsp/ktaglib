@@ -158,29 +158,6 @@ zend_object_value ktaglib_init_KTaglib_new(zend_class_entry *class_type TSRMLS_D
 /*    }}} Class KTaglib */
 
 
-/* {{{ ktaglib_functions[] */
-function_entry ktaglib_functions[] = {
-	{ NULL, NULL, NULL }
-};
-/* }}} */
-
-
-/* {{{ ktaglib_module_entry
- */
-zend_module_entry ktaglib_module_entry = {
-	STANDARD_MODULE_HEADER,
-	"ktaglib",
-	ktaglib_functions,
-	PHP_MINIT(ktaglib),     /* Replace with NULL if there is nothing to do at php startup   */ 
-	PHP_MSHUTDOWN(ktaglib), /* Replace with NULL if there is nothing to do at php shutdown  */
-	PHP_RINIT(ktaglib),     /* Replace with NULL if there is nothing to do at request start */
-	PHP_RSHUTDOWN(ktaglib), /* Replace with NULL if there is nothing to do at request end   */
-	PHP_MINFO(ktaglib),
-	PHP_KTAGLIB_VERSION,
-	STANDARD_MODULE_PROPERTIES
-};
-/* }}} */
-
 #ifdef COMPILE_DL_KTAGLIB
 extern "C" {
 ZEND_GET_MODULE(ktaglib)
@@ -249,6 +226,28 @@ PHP_MINFO_FUNCTION(ktaglib)
 }
 /* }}} */
 
+/* {{{ ktaglib_functions[] */
+function_entry ktaglib_functions[] = {
+	{ NULL, NULL, NULL }
+};
+/* }}} */
+
+
+/* {{{ ktaglib_module_entry
+ */
+zend_module_entry ktaglib_module_entry = {
+	STANDARD_MODULE_HEADER,
+	"ktaglib",
+	ktaglib_functions,
+	PHP_MINIT(ktaglib),     /* Replace with NULL if there is nothing to do at php startup   */ 
+	PHP_MSHUTDOWN(ktaglib), /* Replace with NULL if there is nothing to do at php shutdown  */
+	PHP_RINIT(ktaglib),     /* Replace with NULL if there is nothing to do at request start */
+	PHP_RSHUTDOWN(ktaglib), /* Replace with NULL if there is nothing to do at request end   */
+	PHP_MINFO(ktaglib),
+	PHP_KTAGLIB_VERSION,
+	STANDARD_MODULE_PROPERTIES
+};
+/* }}} */
 #endif /* HAVE_TAGLIB */
 
 

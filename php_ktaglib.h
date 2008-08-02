@@ -56,17 +56,17 @@ extern "C" {
 #include <Zend/zend_exceptions.h>
 #include <Zend/zend_extensions.h>
 
-extern PHPAPI zend_class_entry *ktaglib_ce_FileNotFoundException;
-extern PHPAPI zend_class_entry *ktaglib_ce_TagNotFoundException;
-extern PHPAPI zend_class_entry *ktaglib_ce_MPEG_File;
-extern PHPAPI zend_class_entry *ktaglib_ce_Tag;
-extern PHPAPI zend_class_entry *ktaglib_ce_ID3v1_Tag;
-extern PHPAPI zend_class_entry *ktaglib_ce_ID3v2_Tag;
-extern PHPAPI zend_class_entry *ktaglib_ce_ID3v2_Frame;
-extern PHPAPI zend_class_entry *ktaglib_ce_ID3v2_PictureFrame;
-extern PHPAPI zend_class_entry *ktaglib_ce_ID3v2_CommentsFrame;
-extern PHPAPI zend_class_entry *ktaglib_ce_MPEG_AudioProperties;
-extern PHPAPI zend_class_entry *ktaglib_ce_MPEG_Header;
+extern zend_class_entry *ktaglib_ce_FileNotFoundException;
+extern zend_class_entry *ktaglib_ce_TagNotFoundException;
+extern zend_class_entry *ktaglib_ce_MPEG_File;
+extern zend_class_entry *ktaglib_ce_Tag;
+extern zend_class_entry *ktaglib_ce_ID3v1_Tag;
+extern zend_class_entry *ktaglib_ce_ID3v2_Tag;
+extern zend_class_entry *ktaglib_ce_ID3v2_Frame;
+extern zend_class_entry *ktaglib_ce_ID3v2_PictureFrame;
+extern zend_class_entry *ktaglib_ce_ID3v2_CommentsFrame;
+extern zend_class_entry *ktaglib_ce_MPEG_AudioProperties;
+extern zend_class_entry *ktaglib_ce_MPEG_Header;
 
 extern zend_module_entry ktaglib_module_entry;
 #define phpext_ktaglib_ptr &ktaglib_module_entry
@@ -111,20 +111,20 @@ PHP_METHOD(KTaglib_MPEG_File, getID3v1Tag);
 
 /* internal functions */
 void ktaglib_init_class(zend_class_entry **, zend_class_entry *, const char *, zend_function_entry *);
-zend_object_value ktaglib_init_KTaglib_File_new(zend_class_entry *);
-zend_object_value ktaglib_init_KTaglib_new(zend_class_entry *);
+zend_object_value ktaglib_init_KTaglib_File_new(zend_class_entry * TSRMLS_DC);
+zend_object_value ktaglib_init_KTaglib_new(zend_class_entry * TSRMLS_DC);
 void ktaglib_init_KTaglib_File_free(void *);
 void ktaglib_init_KTaglib_free(void *);
-void ktaglib_init_KTaglib_Exceptions(void);
-void ktaglib_init_KTaglib_MPEG_File(void);
-void ktaglib_init_KTaglib_Tag(void);
-void ktaglib_init_KTaglib_ID3v1_Tag(void);
-void ktaglib_init_KTaglib_ID3v2_Tag(void);
-void ktaglib_init_KTaglib_ID3v2_Frame(void);
-void ktaglib_init_KTaglib_ID3v2_PictureFrame(void);
-void ktaglib_init_KTaglib_ID3v2_CommentsFrame(void);
-void ktaglib_init_KTaglib_MPEG_AudioProperties(void);
-void ktaglib_init_KTaglib_MPEG_Header(void);
+void ktaglib_init_KTaglib_Exceptions(TSRMLS_D);
+void ktaglib_init_KTaglib_MPEG_File(TSRMLS_D);
+void ktaglib_init_KTaglib_Tag(TSRMLS_D);
+void ktaglib_init_KTaglib_ID3v1_Tag(TSRMLS_D);
+void ktaglib_init_KTaglib_ID3v2_Tag(TSRMLS_D);
+void ktaglib_init_KTaglib_ID3v2_Frame(TSRMLS_D);
+void ktaglib_init_KTaglib_ID3v2_PictureFrame(TSRMLS_D);
+void ktaglib_init_KTaglib_ID3v2_CommentsFrame(TSRMLS_D);
+void ktaglib_init_KTaglib_MPEG_AudioProperties(TSRMLS_D);
+void ktaglib_init_KTaglib_MPEG_Header(TSRMLS_D);
 
 /* mirrored PHP Constants */
 #define KTAGLIB_TYPE_NONE 0

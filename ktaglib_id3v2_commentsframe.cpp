@@ -33,7 +33,7 @@
 #include "php_ktaglib.h"
 #include "ktaglibrary.h"
 
-PHPAPI zend_class_entry * ktaglib_ce_ID3v2_CommentsFrame = NULL;
+zend_class_entry * ktaglib_ce_ID3v2_CommentsFrame = NULL;
 
 
 ZEND_BEGIN_ARG_INFO_EX(KTaglib_ID3v2_CommentsFrame_set_args, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 1)
@@ -130,7 +130,7 @@ static zend_function_entry KTaglib_ID3v2_CommentsFrame_methods[] = {
 	{ NULL, NULL, NULL }
 };
 
-void ktaglib_init_KTaglib_ID3v2_CommentsFrame(void)
+void ktaglib_init_KTaglib_ID3v2_CommentsFrame(TSRMLS_D)
 {
 	zend_class_entry ce;
 

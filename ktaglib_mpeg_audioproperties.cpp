@@ -34,7 +34,7 @@
 #include "php_ktaglib.h"
 #include "ktaglibrary.h"
 
-PHPAPI zend_class_entry * ktaglib_ce_MPEG_AudioProperties = NULL;
+zend_class_entry * ktaglib_ce_MPEG_AudioProperties = NULL;
 
 PHP_METHOD(KTaglib_MPEG_AudioProperties, getLength)
 {
@@ -154,11 +154,11 @@ static zend_function_entry KTaglib_MPEG_AudioProperties_methods[] = {
 	{ NULL, NULL, NULL }
 };
 
-void ktaglib_init_KTaglib_MPEG_AudioProperties(void)
+void ktaglib_init_KTaglib_MPEG_AudioProperties(TSRMLS_D)
 {
 	zend_class_entry ce;
 
 	INIT_CLASS_ENTRY(ce, "KTaglib_MPEG_AudioProperties", KTaglib_MPEG_AudioProperties_methods);
 	ce.create_object = ktaglib_init_KTaglib_new;
-	ktaglib_ce_MPEG_AudioProperties = zend_register_internal_class(&ce);
+	ktaglib_ce_MPEG_AudioProperties = zend_register_internal_class(&ce TSRMLS_CC);
 }

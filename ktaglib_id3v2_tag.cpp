@@ -33,7 +33,7 @@
 #include "php_ktaglib.h"
 #include "ktaglibrary.h"
 
-PHPAPI zend_class_entry * ktaglib_ce_ID3v2_Tag = NULL;
+zend_class_entry * ktaglib_ce_ID3v2_Tag = NULL;
 
 PHP_METHOD(KTaglib_ID3v2_Tag, getFrameList)
 {
@@ -55,11 +55,11 @@ PHP_METHOD(KTaglib_ID3v2_Tag, getFrameList)
 
 		TagLib::ID3v2::Frame* f = (TagLib::ID3v2::Frame*)iter->second.front();
 		if (f->frameID() == "APIC") {
-			object_init_ex(obj, ktaglib_ce_ID3v2_PictureFrame TSRMLS_CC);
+			object_init_ex(obj, ktaglib_ce_ID3v2_PictureFrame);
 		} else if (f->frameID() == "COMM") {
-			object_init_ex(obj, ktaglib_ce_ID3v2_CommentsFrame TSRMLS_CC);
+			object_init_ex(obj, ktaglib_ce_ID3v2_CommentsFrame);
 		} else {
-			object_init_ex(obj, ktaglib_ce_ID3v2_Frame TSRMLS_CC);
+			object_init_ex(obj, ktaglib_ce_ID3v2_Frame);
 		}
 		zobject = (ze_ktaglib_object*) zend_object_store_get_object(obj TSRMLS_CC);
 		zobject->frame = (TagLib::ID3v2::Frame*) iter->second.front();
@@ -73,7 +73,7 @@ static zend_function_entry KTaglib_ID3v2_Tag_methods[] = {
 	{ NULL, NULL, NULL }
 };
 
-void ktaglib_init_KTaglib_ID3v2_Tag(void)
+void ktaglib_init_KTaglib_ID3v2_Tag(TSRMLS_D)
 {
 	zend_class_entry ce;
 

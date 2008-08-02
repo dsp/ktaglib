@@ -33,13 +33,13 @@
 #include "php_ktaglib.h"
 #include "ktaglibrary.h"
 
-PHPAPI zend_class_entry * ktaglib_ce_ID3v1_Tag = NULL;
+zend_class_entry * ktaglib_ce_ID3v1_Tag = NULL;
 
 static zend_function_entry KTaglib_ID3v1_Tag_methods[] = {
 	{ NULL, NULL, NULL }
 };
 
-void ktaglib_init_KTaglib_ID3v1_Tag(void)
+void ktaglib_init_KTaglib_ID3v1_Tag(TSRMLS_D)
 {
 	zend_class_entry ce;
 

@@ -33,7 +33,7 @@
 #include "php_ktaglib.h"
 #include "ktaglibrary.h"
 
-PHPAPI zend_class_entry * ktaglib_ce_ID3v2_Frame = NULL;
+zend_class_entry * ktaglib_ce_ID3v2_Frame = NULL;
 
 PHP_METHOD(KTaglib_ID3v2_Frame, getSize)
 {
@@ -61,7 +61,7 @@ static zend_function_entry KTaglib_ID3v2_Frame_methods[] = {
 	{ NULL, NULL, NULL }
 };
 
-void ktaglib_init_KTaglib_ID3v2_Frame(void)
+void ktaglib_init_KTaglib_ID3v2_Frame(TSRMLS_D)
 {
 	zend_class_entry ce;
 

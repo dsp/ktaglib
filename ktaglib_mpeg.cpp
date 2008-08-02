@@ -33,7 +33,7 @@
 #include "php_ktaglib.h"
 #include "ktaglibrary.h"
 
-PHPAPI zend_class_entry * ktaglib_ce_MPEG_File = NULL;
+zend_class_entry * ktaglib_ce_MPEG_File = NULL;
 
 static
 ZEND_BEGIN_ARG_INFO_EX(KTaglib_MPEG_File___construct_args, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 1)
@@ -94,7 +94,7 @@ PHP_METHOD(KTaglib_MPEG_File, getID3v1Tag)
 		   returned by TagLib::MPEG::File::ID3v1Tag()
 		   We don't have to call a constructor here as KTaglib_MPEG_Tag doesn't have one
 		*/
-		object_init_ex(return_value, ktaglib_ce_ID3v1_Tag TSRMLS_CC);
+		object_init_ex(return_value, ktaglib_ce_ID3v1_Tag);
 		nintern = (ze_ktaglib_object*) zend_object_store_get_object(return_value TSRMLS_CC);
 		nintern->tag = file->ID3v1Tag();
 		ktaglib_ref_class(nintern, intern);
@@ -114,7 +114,7 @@ PHP_METHOD(KTaglib_MPEG_File, getID3v2Tag)
 	intern = (ze_ktaglib_file_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
 	file   = (TagLib::MPEG::File*) intern->file;
 	if (file->ID3v2Tag()) {
-		object_init_ex(return_value, ktaglib_ce_ID3v2_Tag TSRMLS_CC);
+		object_init_ex(return_value, ktaglib_ce_ID3v2_Tag);
 		nintern = (ze_ktaglib_object*) zend_object_store_get_object(return_value TSRMLS_CC);
 		nintern->tag = file->ID3v2Tag();
 		ktaglib_ref_class(nintern, intern);
@@ -134,7 +134,7 @@ PHP_METHOD(KTaglib_MPEG_File, getAudioProperties)
 	intern = (ze_ktaglib_file_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
 	file   = (TagLib::MPEG::File*) intern->file;
 	if (file->audioProperties()) {
-		object_init_ex(return_value, ktaglib_ce_MPEG_AudioProperties TSRMLS_CC);
+		object_init_ex(return_value, ktaglib_ce_MPEG_AudioProperties);
 		nintern = (ze_ktaglib_object*) zend_object_store_get_object(return_value TSRMLS_CC);
 		nintern->properties = file->audioProperties();
 		ktaglib_ref_class(nintern, intern);
@@ -161,12 +161,12 @@ static zend_function_entry KTaglib_File_MPEG_methods[] = {
 	{ NULL, NULL, NULL }
 };
 
-void ktaglib_init_KTaglib_MPEG_File(void)
+void ktaglib_init_KTaglib_MPEG_File(TSRMLS_D)
 {
 	zend_class_entry ce;
 
 	INIT_CLASS_ENTRY(ce, "KTaglib_MPEG_File", KTaglib_File_MPEG_methods);
 	ce.create_object = ktaglib_init_KTaglib_File_new;
-	ktaglib_ce_MPEG_File = zend_register_internal_class(&ce);
+	ktaglib_ce_MPEG_File = zend_register_internal_class(&ce TSRMLS_CC);
 }
 

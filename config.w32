@@ -1,0 +1,17 @@
+// $Id: config.w32,v 1.1.2.4 2008/01/14 03:19:41 cellog Exp $
+// vim:ft=javascript
+
+ARG_WITH("ktaglib", "KTaglib support", "no");
+
+if (PHP_KTAGLIB != "no") {
+	ADD_FLAG("CFLAGS", "/EHsc");
+	CHECK_LIB("tag.lib", "ktaglib", PHP_KTAGLIB);
+	CHECK_HEADER_ADD_INCLUDE("taglib.h", "CFLAGS_KTAGLIB", "..\\taglib;" + php_usual_include_suspects);
+	EXTENSION('ktaglib', 'ktaglib.cpp ktaglib_mpeg.cpp ktaglib_id3v1_tag.cpp ktaglib_tag.cpp \
+                     ktaglib_id3v1_tag.cpp ktaglib_id3v2_tag.cpp ktaglib_id3v2_frame.cpp \
+				    ktaglib_id3v2_attachedpictureframe.cpp ktaglib_id3v2_commentsframe.cpp \
+				    ktaglib_mpeg_audioproperties.cpp ktaglib_mpeg_header.cpp');
+
+	AC_DEFINE('HAVE_TAGLIB', 1);
+}
+

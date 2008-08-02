@@ -43,7 +43,7 @@ ZEND_BEGIN_ARG_INFO_EX(KTaglib_Tag_SetDouble_args, ZEND_SEND_BY_VAL, ZEND_RETURN
   ZEND_ARG_INFO(0, integer)
 ZEND_END_ARG_INFO()
 
-PHPAPI zend_class_entry * ktaglib_ce_Tag = NULL;
+zend_class_entry * ktaglib_ce_Tag = NULL;
 
 PHP_METHOD(KTaglib_Tag, getTitle)
 {
@@ -244,12 +244,12 @@ static zend_function_entry KTaglib_Tag_methods[] = {
 	{ NULL, NULL, NULL }
 };
 
-void ktaglib_init_KTaglib_Tag(void)
+void ktaglib_init_KTaglib_Tag(TSRMLS_D)
 {
 	zend_class_entry ce;
 
 	INIT_CLASS_ENTRY(ce, "KTaglib_Tag", KTaglib_Tag_methods);
 	ce.create_object = ktaglib_init_KTaglib_new;
-	ktaglib_ce_Tag = zend_register_internal_class(&ce);
+	ktaglib_ce_Tag = zend_register_internal_class(&ce TSRMLS_CC);
 }
 

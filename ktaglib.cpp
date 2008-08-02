@@ -40,8 +40,8 @@
 /* {{{ Class definitions */
 
 /*    {{{ Class KTaglib_File */
-PHPAPI zend_class_entry *ktaglib_ce_FileNotFoundException;
-PHPAPI zend_class_entry *ktaglib_ce_TagNotFoundException;
+zend_class_entry *ktaglib_ce_FileNotFoundException;
+zend_class_entry *ktaglib_ce_TagNotFoundException;
 
 static zend_class_entry * KTaglib_File_ce_ptr = NULL;
 
@@ -62,10 +62,10 @@ void ktaglib_init_class(zend_class_entry ** ppce, zend_class_entry *pce, const c
 	(*ppce)->create_object = pce->create_object;
 }
 
-void ktaglib_init_KTaglib_Exceptions(void)
+void ktaglib_init_KTaglib_Exceptions(TSRMLS_D)
 {
-	ktaglib_init_class(&ktaglib_ce_FileNotFoundException, zend_exception_get_default(TSRMLS_C), "KTaglib_FileNotFoundException", NULL);
-	ktaglib_init_class(&ktaglib_ce_TagNotFoundException, zend_exception_get_default(TSRMLS_C), "KTaglib_TagNotFoundException", NULL);
+	ktaglib_init_class(&ktaglib_ce_FileNotFoundException, zend_exception_get_default(TSRMLS_C), "KTaglib_FileNotFoundException", NULL TSRMLS_CC);
+	ktaglib_init_class(&ktaglib_ce_TagNotFoundException, zend_exception_get_default(TSRMLS_C), "KTaglib_TagNotFoundException", NULL TSRMLS_CC);
 }
 
 
@@ -191,16 +191,16 @@ ZEND_GET_MODULE(ktaglib)
 /* {{{ PHP_MINIT_FUNCTION */
 PHP_MINIT_FUNCTION(ktaglib)
 {
-	ktaglib_init_KTaglib_Exceptions();
-	ktaglib_init_KTaglib_MPEG_File();
-	ktaglib_init_KTaglib_Tag();
-	ktaglib_init_KTaglib_ID3v1_Tag();
-	ktaglib_init_KTaglib_ID3v2_Tag();
-	ktaglib_init_KTaglib_ID3v2_Frame();
-	ktaglib_init_KTaglib_ID3v2_PictureFrame();
-	ktaglib_init_KTaglib_ID3v2_CommentsFrame();
-	ktaglib_init_KTaglib_MPEG_AudioProperties();
-	ktaglib_init_KTaglib_MPEG_Header();
+	ktaglib_init_KTaglib_Exceptions(TSRMLS_C);
+	ktaglib_init_KTaglib_MPEG_File(TSRMLS_C);
+	ktaglib_init_KTaglib_Tag(TSRMLS_C);
+	ktaglib_init_KTaglib_ID3v1_Tag(TSRMLS_C);
+	ktaglib_init_KTaglib_ID3v2_Tag(TSRMLS_C);
+	ktaglib_init_KTaglib_ID3v2_Frame(TSRMLS_C);
+	ktaglib_init_KTaglib_ID3v2_PictureFrame(TSRMLS_C);
+	ktaglib_init_KTaglib_ID3v2_CommentsFrame(TSRMLS_C);
+	ktaglib_init_KTaglib_MPEG_AudioProperties(TSRMLS_C);
+	ktaglib_init_KTaglib_MPEG_Header(TSRMLS_C);
 
 	return SUCCESS;
 }

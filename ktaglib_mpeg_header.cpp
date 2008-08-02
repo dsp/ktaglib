@@ -33,23 +33,21 @@
 #include "php_ktaglib.h"
 #include "ktaglibrary.h"
 
-PHPAPI zend_class_entry *ktaglib_ce_MPEG_Header = NULL;
+zend_class_entry *ktaglib_ce_MPEG_Header = NULL;
 
 static zend_function_entry KTaglib_MPEG_Header_methods[] = {
 	{ NULL, NULL, NULL }
 };
 
-void ktaglib_init_KTaglib_MPEG_Header(void)
+void ktaglib_init_KTaglib_MPEG_Header(TSRMLS_D)
 {
 	zend_class_entry ce;
 
-	TSRMLS_FETCH();
-
 	INIT_CLASS_ENTRY(ce, "KTaglib_MPEG_Header", KTaglib_MPEG_Header_methods);
 	ce.create_object = ktaglib_init_KTaglib_new;
-	ktaglib_ce_MPEG_Header = zend_register_internal_class(&ce);
+	ktaglib_ce_MPEG_Header = zend_register_internal_class(&ce TSRMLS_CC);
 
-	zend_declare_class_constant_long(ktaglib_ce_MPEG_Header, "VERSION1",  strlen("VERSION1"), TagLib::MPEG::Header::Version1 TSRMLS_DC);
-	zend_declare_class_constant_long(ktaglib_ce_MPEG_Header, "VERSION2",  strlen("VERSION2"), TagLib::MPEG::Header::Version2 TSRMLS_DC);
-	zend_declare_class_constant_long(ktaglib_ce_MPEG_Header, "VERSION2_5",  strlen("VERSION2_5"), TagLib::MPEG::Header::Version2_5 TSRMLS_DC);
+	zend_declare_class_constant_long(ktaglib_ce_MPEG_Header, "VERSION1",  strlen("VERSION1"), TagLib::MPEG::Header::Version1 TSRMLS_CC);
+	zend_declare_class_constant_long(ktaglib_ce_MPEG_Header, "VERSION2",  strlen("VERSION2"), TagLib::MPEG::Header::Version2 TSRMLS_CC);
+	zend_declare_class_constant_long(ktaglib_ce_MPEG_Header, "VERSION2_5",  strlen("VERSION2_5"), TagLib::MPEG::Header::Version2_5 TSRMLS_CC);
 }

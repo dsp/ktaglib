@@ -22,7 +22,7 @@
    | BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;     |
    | LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER     |
    | CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT   |
-   | LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN    | 
+   | LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN    |
    | ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE      |
    | POSSIBILITY OF SUCH DAMAGE.                                          |
    +----------------------------------------------------------------------+
@@ -50,9 +50,9 @@ PHP_METHOD(KTaglib_ID3v2_Frame, __toString)
 
 	intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
 
-       char* str = estrdup((char*) ((TagLib::ID3v2::Frame *) intern->frame)->toString().toCString());
+	char* str = estrdup((char*) ((TagLib::ID3v2::Frame *) intern->frame)->toString().toCString());
 
-       RETURN_STRING(str, 0);
+	RETURN_STRING(str, 0);
 }
 
 static zend_function_entry KTaglib_ID3v2_Frame_methods[] = {

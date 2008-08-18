@@ -81,14 +81,22 @@ PHP_METHOD(KTaglib_MPEG_File, __construct)
 
 PHP_METHOD(KTaglib_MPEG_File, getID3v1Tag)
 {
+	bool createTag = false;
+	zend_bool create = 0;
 	ze_ktaglib_file_object *intern = NULL;
 	ze_ktaglib_object *nintern = NULL;
 
 	TagLib::MPEG::File *file;
 
+	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "|b", &create) == FAILURE) {
+		return;
+	}
+
+	createTag = (create) ? true : false;
+
 	intern = (ze_ktaglib_file_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
 	file   = (TagLib::MPEG::File*) intern->file;
-	if (file->ID3v1Tag()) {
+	if (file->ID3v1Tag(createTag)) {
 		/* initialize the zend object and 
 		   set the internal ->tag pointer to the tag object
 		   returned by TagLib::MPEG::File::ID3v1Tag()
@@ -106,14 +114,22 @@ PHP_METHOD(KTaglib_MPEG_File, getID3v1Tag)
 
 PHP_METHOD(KTaglib_MPEG_File, getID3v2Tag)
 {
+	bool createTag = false;
+	zend_bool create = 0;
 	ze_ktaglib_file_object *intern = NULL;
 	ze_ktaglib_object *nintern = NULL;
 
 	TagLib::MPEG::File *file;
 
+	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "|b", &create) == FAILURE) {
+		return;
+	}
+
+	createTag = (create) ? true : false;
+
 	intern = (ze_ktaglib_file_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
 	file   = (TagLib::MPEG::File*) intern->file;
-	if (file->ID3v2Tag()) {
+	if (file->ID3v2Tag(createTag)) {
 		object_init_ex(return_value, ktaglib_ce_ID3v2_Tag);
 		nintern = (ze_ktaglib_object*) zend_object_store_get_object(return_value TSRMLS_CC);
 		nintern->tag = file->ID3v2Tag();

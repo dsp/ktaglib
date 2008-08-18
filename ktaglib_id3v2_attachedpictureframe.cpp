@@ -40,6 +40,29 @@ ZEND_BEGIN_ARG_INFO_EX(KTaglib_ID3v2_AttachedPictureFrame_savePicture_args, ZEND
   ZEND_ARG_INFO(0, filename)
 ZEND_END_ARG_INFO()
 
+static int
+attachedpicture_set_picture(TagLib::ID3v2::AttachedPictureFrame * frame, char * filename TSRMLS_DC)
+{
+	int len;
+	long maxlen = PHP_STREAM_COPY_ALL;
+	char *contents;
+	php_stream_context *context = NULL;
+	php_stream * stream;
+
+	stream = php_stream_open_wrapper(filename, "rb", ENFORCE_SAFE_MODE | REPORT_ERRORS, NULL);
+
+	if (!stream) {
+		return -1;
+	}
+
+	if ((len = php_stream_copy_to_mem(stream, &contents, maxlen, 0)) > 0) {
+		frame->setPicture(TagLib::ByteVector(contents));
+		return 0;
+	}
+
+	return -1;
+}
+
 PHP_METHOD(KTaglib_ID3v2_AttachedPictureFrame, __construct)
 {
 	char * filename;
@@ -53,6 +76,23 @@ PHP_METHOD(KTaglib_ID3v2_AttachedPictureFrame, __construct)
 	/* we always create an empty instance. If filename is given we call set_picture */
 	intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
 	intern->frame = new TagLib::ID3v2::AttachedPictureFrame();
+
+	if (filename) {
+		attachedpicture_set_picture((TagLib::ID3v2::AttachedPictureFrame *)intern->frame, filename TSRMLS_CC);
+	}
+}
+
+PHP_METHOD(KTaglib_ID3v2_AttachedPictureFrame, setPicture)
+{
+	char * filename;
+	int filename_len;
+	ze_ktaglib_object *intern = NULL;
+
+	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &filename, &filename_len) == FAILURE) {
+		return;
+	}
+
+	intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
 
 	if (filename) {
 		attachedpicture_set_picture((TagLib::ID3v2::AttachedPictureFrame *)intern->frame, filename TSRMLS_CC);
@@ -106,6 +146,7 @@ PHP_METHOD(KTaglib_ID3v2_AttachedPictureFrame, savePicture)
 
 static zend_function_entry KTaglib_ID3v2_AttachedPictureFrame_methods[] = {
 	PHP_ME(KTaglib_ID3v2_AttachedPictureFrame, __construct, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(KTaglib_ID3v2_AttachedPictureFrame, setPicture, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(KTaglib_ID3v2_AttachedPictureFrame, getMimeType, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(KTaglib_ID3v2_AttachedPictureFrame, getDescription, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(KTaglib_ID3v2_AttachedPictureFrame, savePicture, KTaglib_ID3v2_AttachedPictureFrame_savePicture_args, ZEND_ACC_PUBLIC)

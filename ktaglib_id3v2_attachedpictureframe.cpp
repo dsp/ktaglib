@@ -40,6 +40,25 @@ ZEND_BEGIN_ARG_INFO_EX(KTaglib_ID3v2_AttachedPictureFrame_savePicture_args, ZEND
   ZEND_ARG_INFO(0, filename)
 ZEND_END_ARG_INFO()
 
+PHP_METHOD(KTaglib_ID3v2_AttachedPictureFrame, __construct)
+{
+	char * filename;
+	int filename_len;
+	ze_ktaglib_object *intern = NULL;
+
+	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "|s", &filename, &filename_len) == FAILURE) {
+		return;
+	}
+
+	/* we always create an empty instance. If filename is given we call set_picture */
+	intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+	intern->frame = new TagLib::ID3v2::AttachedPictureFrame();
+
+	if (filename) {
+		attachedpicture_set_picture((TagLib::ID3v2::AttachedPictureFrame *)intern->frame, filename TSRMLS_CC);
+	}
+}
+
 PHP_METHOD(KTaglib_ID3v2_AttachedPictureFrame, getDescription)
 {
 	ze_ktaglib_object *intern = NULL;
@@ -86,6 +105,7 @@ PHP_METHOD(KTaglib_ID3v2_AttachedPictureFrame, savePicture)
 }
 
 static zend_function_entry KTaglib_ID3v2_AttachedPictureFrame_methods[] = {
+	PHP_ME(KTaglib_ID3v2_AttachedPictureFrame, __construct, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(KTaglib_ID3v2_AttachedPictureFrame, getMimeType, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(KTaglib_ID3v2_AttachedPictureFrame, getDescription, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(KTaglib_ID3v2_AttachedPictureFrame, savePicture, KTaglib_ID3v2_AttachedPictureFrame_savePicture_args, ZEND_ACC_PUBLIC)

@@ -68,7 +68,30 @@ PHP_METHOD(KTaglib_ID3v2_Tag, getFrameList)
 	}
 }
 
+PHP_METHOD(KTaglib_ID3v2_Tag, addFrame)
+{
+	zval* frame;
+	ze_ktaglib_object *zobject = NULL;
+	ze_ktaglib_object *intern = NULL;
+
+	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "z", &frame) == FAILURE) {
+		return;
+	}
+
+	intern	= (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+	zobject = (ze_ktaglib_object*) zend_object_store_get_object(frame TSRMLS_CC);
+
+	if (!zobject || !zobject->frame) {
+		php_error_docref(NULL TSRMLS_CC, E_WARNING, "First parameter must be a valid frame object");
+		RETURN_FALSE;
+	}
+
+	((TagLib::ID3v2::Tag *) intern->tag)->addFrame(zobject->frame);
+	ktaglib_ref_class(zobject, intern->zo_file);
+}
+
 static zend_function_entry KTaglib_ID3v2_Tag_methods[] = {
+	PHP_ME(KTaglib_ID3v2_Tag, addFrame, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(KTaglib_ID3v2_Tag, getFrameList, NULL, ZEND_ACC_PUBLIC)
 	{ NULL, NULL, NULL }
 };

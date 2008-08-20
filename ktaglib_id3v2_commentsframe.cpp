@@ -40,6 +40,25 @@ ZEND_BEGIN_ARG_INFO_EX(KTaglib_ID3v2_CommentsFrame_set_args, ZEND_SEND_BY_VAL, Z
   ZEND_ARG_INFO(0, str)
 ZEND_END_ARG_INFO()
 
+PHP_METHOD(KTaglib_ID3v2_CommentsFrame, __construct)
+{
+	char * desc, *text, *lang;
+	int * desc_len, text_len, lang_len;
+	ze_ktaglib_object *intern = NULL;
+
+	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "|sss", &desc, &desc_len, &text, &text_len, &lang, &lang_len) == FAILURE) {
+		return;
+	}
+
+	intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+	intern->frame = new TagLib::ID3v2::CommentsFrame();
+
+	TagLib::ByteVector vec(lang);
+	((TagLib::ID3v2::CommentsFrame *)intern->frame)->setLanguage(vec);
+	((TagLib::ID3v2::CommentsFrame *)intern->frame)->setDescription(desc);
+	((TagLib::ID3v2::CommentsFrame *)intern->frame)->setText(text);
+}
+
 PHP_METHOD(KTaglib_ID3v2_CommentsFrame, getDescription)
 {
 	ze_ktaglib_object *intern = NULL;
@@ -121,6 +140,7 @@ PHP_METHOD(KTaglib_ID3v2_CommentsFrame, setLanguage)
 }
 
 static zend_function_entry KTaglib_ID3v2_CommentsFrame_methods[] = {
+	PHP_ME(KTaglib_ID3v2_CommentsFrame, __construct, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(KTaglib_ID3v2_CommentsFrame, getText, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(KTaglib_ID3v2_CommentsFrame, getDescription, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(KTaglib_ID3v2_CommentsFrame, getLanguage, NULL, ZEND_ACC_PUBLIC)

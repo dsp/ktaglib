@@ -66,6 +66,9 @@ extern zend_class_entry *ktaglib_ce_ID3v2_PictureFrame;
 extern zend_class_entry *ktaglib_ce_ID3v2_CommentsFrame;
 extern zend_class_entry *ktaglib_ce_MPEG_AudioProperties;
 extern zend_class_entry *ktaglib_ce_MPEG_Header;
+extern zend_class_entry *ktaglib_ce_Ogg_Vorbis_File;
+extern zend_class_entry *ktaglib_ce_Ogg_Vorbis_AudioProperties;
+extern zend_class_entry *ktaglib_ce_Ogg_Tag;
 
 extern zend_module_entry ktaglib_module_entry;
 #define phpext_ktaglib_ptr &ktaglib_module_entry
@@ -101,6 +104,9 @@ void ktaglib_init_KTaglib_ID3v2_PictureFrame(TSRMLS_D);
 void ktaglib_init_KTaglib_ID3v2_CommentsFrame(TSRMLS_D);
 void ktaglib_init_KTaglib_MPEG_AudioProperties(TSRMLS_D);
 void ktaglib_init_KTaglib_MPEG_Header(TSRMLS_D);
+void ktaglib_init_KTaglib_Ogg_Vorbis_File(TSRMLS_D);
+void ktaglib_init_KTaglib_Ogg_Vorbis_AudioProperties(TSRMLS_D);
+void ktaglib_init_KTaglib_Ogg_Tag(TSRMLS_D);
 
 /* mirrored PHP Constants */
 #define KTAGLIB_TYPE_NONE 0

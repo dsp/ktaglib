@@ -10,7 +10,9 @@ if (PHP_KTAGLIB != "no") {
 	EXTENSION('ktaglib', 'ktaglib.cpp ktaglib_mpeg.cpp ktaglib_id3v1_tag.cpp ktaglib_tag.cpp \
                      ktaglib_id3v1_tag.cpp ktaglib_id3v2_tag.cpp ktaglib_id3v2_frame.cpp \
 				    ktaglib_id3v2_attachedpictureframe.cpp ktaglib_id3v2_commentsframe.cpp \
-				    ktaglib_mpeg_audioproperties.cpp ktaglib_mpeg_header.cpp');
+				    ktaglib_mpeg_audioproperties.cpp ktaglib_mpeg_header.cpp \
+                                    ktaglib_ogg_vorbis.cpp ktaglib_ogg_vorbis_audioproperties.cpp \
+				    ktaglib_ogg_tag.cpp');
 
 	AC_DEFINE('HAVE_TAGLIB', 1);
 }

@@ -45,6 +45,9 @@ if test "$PHP_KTAGLIB" != "no"; then
   AC_CHECK_HEADER([tfile.h], [], AC_MSG_ERROR('tfile.h' header not found))
   AC_CHECK_HEADER([id3v1tag.h], [], AC_MSG_ERROR('id3v1tag.h' header not found))
   AC_CHECK_HEADER([id3v2tag.h], [], AC_MSG_ERROR('id3v2tag.h' header not found))
+  AC_CHECK_HEADER([speexfile.h], [], AC_MSG_ERROR('speexfile.h' header not found))
+  AC_CHECK_HEADER([vorbisfile.h], [], AC_MSG_ERROR('vorbisfile.h' header not found))
+  AC_CHECK_HEADER([xiphcomment.h], [], AC_MSG_ERROR('xiphcomment.h' header not found))
   export CPPFLAGS="$OLD_CPPFLAGS"
 
   export OLD_CPPFLAGS="$CPPFLAGS"
@@ -60,7 +63,9 @@ if test "$PHP_KTAGLIB" != "no"; then
                              ktaglib_id3v1_tag.cpp \
                              ktaglib_id3v2_tag.cpp ktaglib_id3v2_frame.cpp \ 
                              ktaglib_id3v2_attachedpictureframe.cpp ktaglib_id3v2_commentsframe.cpp \
-                             ktaglib_mpeg_audioproperties.cpp ktaglib_mpeg_header.cpp, $ext_shared)
+                             ktaglib_mpeg_audioproperties.cpp ktaglib_mpeg_header.cpp \
+                             ktaglib_ogg_vorbis.cpp ktaglib_ogg_vorbis_audioproperties.cpp \
+                             ktaglib_ogg_tag.cpp, $ext_shared)
 
 fi
 

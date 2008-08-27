@@ -13,6 +13,10 @@
 #include <commentsframe.h>
 #include <mpegproperties.h>
 #include <mpegheader.h>
+#include <speexfile.h>
+#include <vorbisfile.h>
+#include <xiphcomment.h>
+
 
 /* Extends zend object */
 typedef struct _ze_ktaglib_file_object {

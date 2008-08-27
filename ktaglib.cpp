@@ -178,6 +178,9 @@ PHP_MINIT_FUNCTION(ktaglib)
 	ktaglib_init_KTaglib_ID3v2_CommentsFrame(TSRMLS_C);
 	ktaglib_init_KTaglib_MPEG_AudioProperties(TSRMLS_C);
 	ktaglib_init_KTaglib_MPEG_Header(TSRMLS_C);
+	ktaglib_init_KTaglib_Ogg_Vorbis_File(TSRMLS_C);
+	ktaglib_init_KTaglib_Ogg_Vorbis_AudioProperties(TSRMLS_C);
+	ktaglib_init_KTaglib_Ogg_Tag(TSRMLS_C);
 
 	return SUCCESS;
 }

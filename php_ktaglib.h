@@ -52,6 +52,7 @@ extern "C" {
 #include <php_ini.h>
 #include <php_streams.h>
 #include <ext/standard/info.h>
+#include <ext/standard/php_string.h>
 #include <Zend/zend_exceptions.h>
 #include <Zend/zend_extensions.h>
 

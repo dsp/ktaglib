@@ -38,9 +38,7 @@ zend_class_entry *ktaglib_ce_Ogg_Tag = NULL;
 
 PHP_METHOD(KTaglib_Ogg_Tag, getTitle)
 {
-	ze_ktaglib_object *intern = NULL;
-
-	intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+	ze_ktaglib_object *intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
 
 	TagLib::Ogg::Vorbis::File *file = (TagLib::Ogg::Vorbis::File*) intern->zo_file->file;
 
@@ -67,9 +65,7 @@ PHP_METHOD(KTaglib_Ogg_Tag, setTitle)
 
 PHP_METHOD(KTaglib_Ogg_Tag, getArtist)
 {
-	ze_ktaglib_object *intern = NULL;
-
-	intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+	ze_ktaglib_object *intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
 
 	TagLib::Ogg::Vorbis::File *file = (TagLib::Ogg::Vorbis::File*) intern->zo_file->file;
 
@@ -96,9 +92,7 @@ PHP_METHOD(KTaglib_Ogg_Tag, setArtist)
 
 PHP_METHOD(KTaglib_Ogg_Tag, getAlbum)
 {
-	ze_ktaglib_object *intern = NULL;
-
-	intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+	ze_ktaglib_object *intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
 
 	TagLib::Ogg::Vorbis::File *file = (TagLib::Ogg::Vorbis::File*) intern->zo_file->file;
 
@@ -125,9 +119,7 @@ PHP_METHOD(KTaglib_Ogg_Tag, setAlbum)
 
 PHP_METHOD(KTaglib_Ogg_Tag, getComment)
 {
-	ze_ktaglib_object *intern = NULL;
-
-	intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+	ze_ktaglib_object *intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
 
 	TagLib::Ogg::Vorbis::File *file = (TagLib::Ogg::Vorbis::File*) intern->zo_file->file;
 
@@ -154,9 +146,7 @@ PHP_METHOD(KTaglib_Ogg_Tag, setComment)
 
 PHP_METHOD(KTaglib_Ogg_Tag, getGenre)
 {
-	ze_ktaglib_object *intern = NULL;
-
-	intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+	ze_ktaglib_object *intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
 
 	TagLib::Ogg::Vorbis::File *file = (TagLib::Ogg::Vorbis::File*) intern->zo_file->file;
 
@@ -183,9 +173,7 @@ PHP_METHOD(KTaglib_Ogg_Tag, setGenre)
 
 PHP_METHOD(KTaglib_Ogg_Tag, getTrack)
 {
-	ze_ktaglib_object *intern = NULL;
-
-	intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+	ze_ktaglib_object *intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
 
 	TagLib::Ogg::Vorbis::File *file = (TagLib::Ogg::Vorbis::File*) intern->zo_file->file;
 
@@ -211,9 +199,7 @@ PHP_METHOD(KTaglib_Ogg_Tag, setTrack)
 
 PHP_METHOD(KTaglib_Ogg_Tag, getYear)
 {
-	ze_ktaglib_object *intern = NULL;
-
-	intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+	ze_ktaglib_object *intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
 
 	TagLib::Ogg::Vorbis::File *file = (TagLib::Ogg::Vorbis::File*) intern->zo_file->file;
 
@@ -239,14 +225,113 @@ PHP_METHOD(KTaglib_Ogg_Tag, setYear)
 
 PHP_METHOD(KTaglib_Ogg_Tag, isEmpty)
 {
-	ze_ktaglib_object *intern = NULL;
-
-	intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+	ze_ktaglib_object *intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
 
 	TagLib::Ogg::Vorbis::File *file = (TagLib::Ogg::Vorbis::File*) intern->zo_file->file;
 
 	RETURN_LONG((zend_bool) file->tag()->isEmpty());
 }
+
+PHP_METHOD(KTaglib_Ogg_Tag, addField)
+{
+	ze_ktaglib_object *intern = NULL;
+	char *key, *value;
+	long key_len, value_len;
+	zend_bool replace = 1;
+
+	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "ss|b", &key, &key_len, &value, &value_len, &replace) == FAILURE) {
+		return;
+	}
+
+	intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+
+	TagLib::Ogg::Vorbis::File *file = (TagLib::Ogg::Vorbis::File*) intern->zo_file->file;
+
+	file->tag()->addField(key, value, replace);
+}
+
+PHP_METHOD(KTaglib_Ogg_Tag, getVendorId)
+{
+	ze_ktaglib_object *intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+
+	TagLib::Ogg::Vorbis::File *file = (TagLib::Ogg::Vorbis::File*) intern->zo_file->file;
+
+	RETVAL_STRING((char*) file->tag()->vendorID().toCString(), 1);
+}
+
+PHP_METHOD(KTaglib_Ogg_Tag, removeField)
+{
+	ze_ktaglib_object *intern = NULL;
+	char *key, *value = NULL;
+	int key_len, value_len = 0;
+
+	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s|s", &key, &key_len, &value, &value_len) == FAILURE) {
+		return;
+	}
+
+	intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+
+	TagLib::Ogg::Vorbis::File *file = (TagLib::Ogg::Vorbis::File*) intern->zo_file->file;
+
+	file->tag()->removeField(key, value_len ? value : TagLib::String::null);
+}
+
+PHP_METHOD(KTaglib_Ogg_Tag, contains)
+{
+	ze_ktaglib_object *intern = NULL;
+	char *key;
+	int key_len;
+
+	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &key, &key_len) == FAILURE) {
+		return;
+	}
+
+	intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+
+	TagLib::Ogg::Vorbis::File *file = (TagLib::Ogg::Vorbis::File*) intern->zo_file->file;
+
+	RETVAL_BOOL(file->tag()->contains(key));
+}
+
+PHP_METHOD(KTaglib_Ogg_Tag, getField)
+{
+	ze_ktaglib_object *intern = NULL;
+	char *key;
+	int key_len;
+
+	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &key, &key_len) == FAILURE) {
+		return;
+	}
+
+	intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+
+	TagLib::Ogg::Vorbis::File *file = (TagLib::Ogg::Vorbis::File*) intern->zo_file->file;
+
+	/**
+	 * Must be uppercase because of convention
+	 */
+	php_strtoupper(key, key_len);
+
+	if(file->tag()->contains(key)) {
+		TagLib::Ogg::FieldListMap fields = file->tag()->fieldListMap();
+
+		RETVAL_STRING((char*) fields[key].front().toCString(), 1);
+
+		return;
+	}
+
+	RETURN_NULL();
+}
+
+PHP_METHOD(KTaglib_Ogg_Tag, fieldCount)
+{
+	ze_ktaglib_object *intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+
+	TagLib::Ogg::Vorbis::File *file = (TagLib::Ogg::Vorbis::File*) intern->zo_file->file;
+
+	RETURN_LONG((long) file->tag()->fieldCount());
+}
+
 
 static zend_function_entry KTaglib_Ogg_Tag_methods[] = {
 	PHP_ME(KTaglib_Ogg_Tag, getTitle, NULL, ZEND_ACC_PUBLIC)
@@ -264,6 +349,12 @@ static zend_function_entry KTaglib_Ogg_Tag_methods[] = {
 	PHP_ME(KTaglib_Ogg_Tag, getYear, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(KTaglib_Ogg_Tag, setYear, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(KTaglib_Ogg_Tag, isEmpty, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(KTaglib_Ogg_Tag, addField, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(KTaglib_Ogg_Tag, getVendorId, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(KTaglib_Ogg_Tag, removeField, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(KTaglib_Ogg_Tag, contains, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(KTaglib_Ogg_Tag, fieldCount, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(KTaglib_Ogg_Tag, getField, NULL, ZEND_ACC_PUBLIC)
 	{ NULL, NULL, NULL }
 };
 

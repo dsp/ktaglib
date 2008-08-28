@@ -42,6 +42,7 @@
 /*    {{{ Class KTaglib_File */
 zend_class_entry *ktaglib_ce_FileNotFoundException;
 zend_class_entry *ktaglib_ce_TagNotFoundException;
+zend_class_entry *ktaglib_ce_BadAllocException;
 
 static zend_class_entry * KTaglib_File_ce_ptr = NULL;
 
@@ -66,6 +67,7 @@ void ktaglib_init_KTaglib_Exceptions(TSRMLS_D)
 {
 	ktaglib_init_class(&ktaglib_ce_FileNotFoundException, zend_exception_get_default(TSRMLS_C), "KTaglib_FileNotFoundException", NULL TSRMLS_CC);
 	ktaglib_init_class(&ktaglib_ce_TagNotFoundException, zend_exception_get_default(TSRMLS_C), "KTaglib_TagNotFoundException", NULL TSRMLS_CC);
+	ktaglib_init_class(&ktaglib_ce_BadAllocException, zend_exception_get_default(TSRMLS_C), "KTaglib_BadAllocException", NULL TSRMLS_CC);
 }
 
 

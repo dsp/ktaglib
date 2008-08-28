@@ -57,6 +57,8 @@ extern "C" {
 
 extern zend_class_entry *ktaglib_ce_FileNotFoundException;
 extern zend_class_entry *ktaglib_ce_TagNotFoundException;
+extern zend_class_entry *ktaglib_ce_BadAllocException;
+
 extern zend_class_entry *ktaglib_ce_MPEG_File;
 extern zend_class_entry *ktaglib_ce_Tag;
 extern zend_class_entry *ktaglib_ce_ID3v1_Tag;

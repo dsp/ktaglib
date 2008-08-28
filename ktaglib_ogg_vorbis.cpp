@@ -70,7 +70,15 @@ PHP_METHOD(KTaglib_Ogg_Vorbis_File, __construct)
 		RETURN_FALSE;
 	}
 
-	intern->file = new TagLib::Ogg::Vorbis::File(filename);
+	/**
+	 * TODO pack file initializations in a function
+	 */
+	try {
+		intern->file = new TagLib::Ogg::Vorbis::File(filename);
+	} catch(bad_alloc xa) {
+		zend_throw_exception(ktaglib_ce_BadAllocException, "Cannot allocate memory", 0 TSRMLS_CC);
+		return;
+	}
 
 	if (!intern->file->isValid()) {
 		zend_throw_exception(ktaglib_ce_FileNotFoundException, "File not found", 0 TSRMLS_CC);

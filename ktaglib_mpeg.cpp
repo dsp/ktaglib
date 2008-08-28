@@ -165,7 +165,10 @@ PHP_METHOD(KTaglib_MPEG_File, save)
 	ze_ktaglib_file_object *intern = NULL;
 
 	intern = (ze_ktaglib_file_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
-	((TagLib::MPEG::File*) intern->file)->save();
+
+	bool result = ((TagLib::MPEG::File*) intern->file)->save();
+
+	RETVAL_BOOL((zend_bool) result);
 }
 
 static zend_function_entry KTaglib_File_MPEG_methods[] = {

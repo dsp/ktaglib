@@ -128,7 +128,10 @@ PHP_METHOD(KTaglib_Ogg_Vorbis_File, save)
 	ze_ktaglib_file_object *intern = NULL;
 
 	intern = (ze_ktaglib_file_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
-	((TagLib::Ogg::Vorbis::File*) intern->file)->save();
+
+	bool result = ((TagLib::Ogg::Vorbis::File*) intern->file)->save();
+
+	RETVAL_BOOL((zend_bool) result);
 }
 
 static zend_function_entry KTaglib_File_Ogg_Vorbis_methods[] = {

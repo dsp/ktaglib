@@ -38,17 +38,45 @@ zend_class_entry *ktaglib_ce_Ogg_Vorbis_AudioProperties = NULL;
 
 PHP_METHOD(KTaglib_Ogg_Vorbis_AudioProperties, getSampleRate)
 {
-	ze_ktaglib_object *intern = NULL;
-
-	intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+	ze_ktaglib_object *intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
 
 	TagLib::Ogg::Vorbis::File *file = (TagLib::Ogg::Vorbis::File*) intern->zo_file->file;
 
 	RETURN_LONG(file->audioProperties()->sampleRate());
 }
 
+PHP_METHOD(KTaglib_Ogg_Vorbis_AudioProperties, getBitrate)
+{
+	ze_ktaglib_object *intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+
+	TagLib::Ogg::Vorbis::File *file = (TagLib::Ogg::Vorbis::File*) intern->zo_file->file;
+
+	RETURN_LONG(file->audioProperties()->bitrate());
+}
+
+PHP_METHOD(KTaglib_Ogg_Vorbis_AudioProperties, getLength)
+{
+	ze_ktaglib_object *intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+
+	TagLib::Ogg::Vorbis::File *file = (TagLib::Ogg::Vorbis::File*) intern->zo_file->file;
+
+	RETURN_LONG(file->audioProperties()->length());
+}
+
+PHP_METHOD(KTaglib_Ogg_Vorbis_AudioProperties, getChannels)
+{
+	ze_ktaglib_object *intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+
+	TagLib::Ogg::Vorbis::File *file = (TagLib::Ogg::Vorbis::File*) intern->zo_file->file;
+
+	RETURN_LONG(file->audioProperties()->channels());
+}
+
 static zend_function_entry KTaglib_Ogg_Vorbis_AudioProperties_methods[] = {
 	PHP_ME(KTaglib_Ogg_Vorbis_AudioProperties, getSampleRate, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(KTaglib_Ogg_Vorbis_AudioProperties, getBitrate, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(KTaglib_Ogg_Vorbis_AudioProperties, getLength, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(KTaglib_Ogg_Vorbis_AudioProperties, getChannels, NULL, ZEND_ACC_PUBLIC)
 	{ NULL, NULL, NULL }
 };
 

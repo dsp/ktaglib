@@ -229,7 +229,7 @@ PHP_METHOD(KTaglib_Ogg_Tag, isEmpty)
 
 	TagLib::Ogg::Vorbis::File *file = (TagLib::Ogg::Vorbis::File*) intern->zo_file->file;
 
-	RETURN_LONG((zend_bool) file->tag()->isEmpty());
+	RETVAL_BOOL((zend_bool) file->tag()->isEmpty());
 }
 
 PHP_METHOD(KTaglib_Ogg_Tag, addField)

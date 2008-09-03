@@ -243,6 +243,11 @@ PHP_METHOD(KTaglib_Ogg_Tag, addField)
 		return;
 	}
 
+	/**
+	 * key gets automatically converted to uppercase
+	 * by taglib itself
+	 */
+
 	intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
 
 	TagLib::Ogg::Vorbis::File *file = (TagLib::Ogg::Vorbis::File*) intern->zo_file->file;
@@ -269,6 +274,11 @@ PHP_METHOD(KTaglib_Ogg_Tag, removeField)
 		return;
 	}
 
+	/**
+	 * Must be uppercase because of convention
+	 */
+	php_strtoupper(key, key_len);
+
 	intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
 
 	TagLib::Ogg::Vorbis::File *file = (TagLib::Ogg::Vorbis::File*) intern->zo_file->file;
@@ -285,6 +295,11 @@ PHP_METHOD(KTaglib_Ogg_Tag, contains)
 	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &key, &key_len) == FAILURE) {
 		return;
 	}
+
+	/**
+	 * Must be uppercase because of convention
+	 */
+	php_strtoupper(key, key_len);
 
 	intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
 

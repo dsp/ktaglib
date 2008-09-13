@@ -22,7 +22,7 @@
    | BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;     |
    | LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER     |
    | CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT   |
-   | LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN    | 
+   | LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN    |
    | ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE      |
    | POSSIBILITY OF SUCH DAMAGE.                                          |
    +----------------------------------------------------------------------+
@@ -106,9 +106,9 @@ PHP_METHOD(KTaglib_ID3v2_AttachedPictureFrame, getDescription)
 PHP_METHOD(KTaglib_ID3v2_AttachedPictureFrame, getMimeType)
 {
 	ze_ktaglib_object *intern = NULL;
-	
+
 	intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
-	
+
 	RETURN_STRING((char*) ((TagLib::ID3v2::AttachedPictureFrame *)intern->frame)->mimeType().toCString(), 1);
 }
 
@@ -123,7 +123,7 @@ PHP_METHOD(KTaglib_ID3v2_AttachedPictureFrame, savePicture)
 	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &filename, &filename_len) == FAILURE) {
 		return;
 	}
-	
+
 	intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
 
 	stream = php_stream_open_wrapper(filename, "w+", ENFORCE_SAFE_MODE | REPORT_ERRORS, NULL);
@@ -134,7 +134,7 @@ PHP_METHOD(KTaglib_ID3v2_AttachedPictureFrame, savePicture)
 	buf = ((TagLib::ID3v2::AttachedPictureFrame *)intern->frame)->picture();
 
 	php_stream_write(stream, (char*) buf.data(), buf.size());
-	
+
 	php_stream_close(stream);
 	RETURN_TRUE;
 }

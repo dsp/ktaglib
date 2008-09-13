@@ -22,7 +22,7 @@
    | BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;     |
    | LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER     |
    | CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT   |
-   | LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN    | 
+   | LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN    |
    | ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE      |
    | POSSIBILITY OF SUCH DAMAGE.                                          |
    +----------------------------------------------------------------------+
@@ -30,7 +30,7 @@
    +----------------------------------------------------------------------+
 */
 
-/* $ Id: $ */ 
+/* $ Id: $ */
 
 #include "php_ktaglib.h"
 #include "ktaglibrary.h"
@@ -218,7 +218,7 @@ PHP_MINFO_FUNCTION(ktaglib)
 {
 	char version[5];
 
-	sprintf(version, "%1d.%1d.%1d", 
+	sprintf(version, "%1d.%1d.%1d",
 			TAGLIB_MAJOR_VERSION, TAGLIB_MINOR_VERSION, TAGLIB_PATCH_VERSION);
 
 	php_info_print_table_start();
@@ -244,7 +244,7 @@ zend_module_entry ktaglib_module_entry = {
 	STANDARD_MODULE_HEADER,
 	"ktaglib",
 	ktaglib_functions,
-	PHP_MINIT(ktaglib),     /* Replace with NULL if there is nothing to do at php startup   */ 
+	PHP_MINIT(ktaglib),     /* Replace with NULL if there is nothing to do at php startup   */
 	PHP_MSHUTDOWN(ktaglib), /* Replace with NULL if there is nothing to do at php shutdown  */
 	PHP_RINIT(ktaglib),     /* Replace with NULL if there is nothing to do at request start */
 	PHP_RSHUTDOWN(ktaglib), /* Replace with NULL if there is nothing to do at request end   */

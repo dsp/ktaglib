@@ -22,7 +22,7 @@
    | BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;     |
    | LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER     |
    | CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT   |
-   | LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN    | 
+   | LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN    |
    | ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE      |
    | POSSIBILITY OF SUCH DAMAGE.                                          |
    +----------------------------------------------------------------------+
@@ -52,21 +52,21 @@ PHP_METHOD(KTaglib_MPEG_File, __construct)
 	if (filename_len == 0) {
 		php_error_docref(NULL TSRMLS_CC, E_WARNING, "Empty string as source");
 		RETURN_FALSE;
-	}	
+	}
 
 	if (PG(safe_mode) && (!php_checkuid(filename, NULL, CHECKUID_CHECK_FILE_AND_DIR))) {
 		RETURN_FALSE;
 	}
 
 	if (VCWD_STAT(filename, &sb) != 0) {
-		zend_throw_exception(ktaglib_ce_FileNotFoundException, "File not found", 0 TSRMLS_CC);		
+		zend_throw_exception(ktaglib_ce_FileNotFoundException, "File not found", 0 TSRMLS_CC);
 		return;
 	}
 
 	if (php_check_open_basedir(filename TSRMLS_CC)) {
 		RETURN_FALSE;
 	}
-	
+
 	intern->file = new TagLib::MPEG::File(filename);
 
 	if (!intern->file->isValid()) {
@@ -92,7 +92,7 @@ PHP_METHOD(KTaglib_MPEG_File, getID3v1Tag)
 	intern = (ze_ktaglib_file_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
 	file   = (TagLib::MPEG::File*) intern->file;
 	if (file->ID3v1Tag(createTag)) {
-		/* initialize the zend object and 
+		/* initialize the zend object and
 		   set the internal ->tag pointer to the tag object
 		   returned by TagLib::MPEG::File::ID3v1Tag()
 		   We don't have to call a constructor here as KTaglib_MPEG_Tag doesn't have one

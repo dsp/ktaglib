@@ -1,4 +1,3 @@
-// $Id: config.w32,v 1.1.2.4 2008/01/14 03:19:41 cellog Exp $
 // vim:ft=javascript
 
 ARG_WITH("ktaglib", "KTaglib support", "no");

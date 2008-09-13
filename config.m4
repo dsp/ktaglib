@@ -26,7 +26,7 @@ if test "$PHP_KTAGLIB" != "no"; then
 	AC_MSG_ERROR(['taglib' not known to pkg-config])
   fi
 
-  if ! $PKG_CONFIG --atleast-version 1.4 taglib
+  if ! $PKG_CONFIG --atleast-version 1.5 taglib
   then
 	PKG_VERSION=`$PKG_CONFIG --modversion taglib`
 	AC_MSG_ERROR(['taglib'\ is version $PKG_VERSION, 1.4 required])

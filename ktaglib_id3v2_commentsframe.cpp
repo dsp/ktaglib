@@ -35,11 +35,6 @@
 
 zend_class_entry * ktaglib_ce_ID3v2_CommentsFrame = NULL;
 
-
-ZEND_BEGIN_ARG_INFO_EX(KTaglib_ID3v2_CommentsFrame_set_args, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 1)
-  ZEND_ARG_INFO(0, str)
-ZEND_END_ARG_INFO()
-
 PHP_METHOD(KTaglib_ID3v2_CommentsFrame, __construct)
 {
 	char * desc, *text, *lang;

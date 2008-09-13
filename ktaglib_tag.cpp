@@ -33,16 +33,6 @@
 #include "php_ktaglib.h"
 #include "ktaglibrary.h"
 
-static
-ZEND_BEGIN_ARG_INFO_EX(KTaglib_Tag_SetString_args, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 1)
-  ZEND_ARG_INFO(0, string)
-ZEND_END_ARG_INFO()
-
-static
-ZEND_BEGIN_ARG_INFO_EX(KTaglib_Tag_SetDouble_args, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 1)
-  ZEND_ARG_INFO(0, integer)
-ZEND_END_ARG_INFO()
-
 zend_class_entry * ktaglib_ce_Tag = NULL;
 
 PHP_METHOD(KTaglib_Tag, getTitle)
@@ -233,13 +223,13 @@ static zend_function_entry KTaglib_Tag_methods[] = {
 	PHP_ME(KTaglib_Tag, getGenre,    NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(KTaglib_Tag, getYear,     NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(KTaglib_Tag, getTrack,    NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(KTaglib_Tag, setTitle,    KTaglib_Tag_SetString_args, ZEND_ACC_PUBLIC)
-	PHP_ME(KTaglib_Tag, setArtist,   KTaglib_Tag_SetString_args, ZEND_ACC_PUBLIC)
-	PHP_ME(KTaglib_Tag, setAlbum,    KTaglib_Tag_SetString_args, ZEND_ACC_PUBLIC)
-	PHP_ME(KTaglib_Tag, setComment,  KTaglib_Tag_SetString_args, ZEND_ACC_PUBLIC)
-	PHP_ME(KTaglib_Tag, setGenre,    KTaglib_Tag_SetString_args, ZEND_ACC_PUBLIC)
-	PHP_ME(KTaglib_Tag, setYear,     KTaglib_Tag_SetDouble_args, ZEND_ACC_PUBLIC)
-	PHP_ME(KTaglib_Tag, setTrack,    KTaglib_Tag_SetDouble_args, ZEND_ACC_PUBLIC)
+	PHP_ME(KTaglib_Tag, setTitle,    NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(KTaglib_Tag, setArtist,   NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(KTaglib_Tag, setAlbum,    NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(KTaglib_Tag, setComment,  NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(KTaglib_Tag, setGenre,    NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(KTaglib_Tag, setYear,     NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(KTaglib_Tag, setTrack,    NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(KTaglib_Tag, isEmpty,     NULL, ZEND_ACC_PUBLIC)
 	{ NULL, NULL, NULL }
 };

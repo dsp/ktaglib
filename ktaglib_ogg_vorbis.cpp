@@ -35,10 +35,6 @@
 
 zend_class_entry *ktaglib_ce_Ogg_Vorbis_File = NULL;
 
-static ZEND_BEGIN_ARG_INFO_EX(KTaglib_Ogg_Vorbis_File___construct_args, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 1)
-  ZEND_ARG_INFO(0, filename)
-ZEND_END_ARG_INFO()
-
 PHP_METHOD(KTaglib_Ogg_Vorbis_File, __construct)
 {
 	ze_ktaglib_file_object *intern = NULL;
@@ -135,7 +131,7 @@ PHP_METHOD(KTaglib_Ogg_Vorbis_File, save)
 }
 
 static zend_function_entry KTaglib_File_Ogg_Vorbis_methods[] = {
-	PHP_ME(KTaglib_Ogg_Vorbis_File, __construct, KTaglib_Ogg_Vorbis_File___construct_args, ZEND_ACC_PUBLIC)
+	PHP_ME(KTaglib_Ogg_Vorbis_File, __construct, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(KTaglib_Ogg_Vorbis_File, getAudioProperties, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(KTaglib_Ogg_Vorbis_File, getTag, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(KTaglib_Ogg_Vorbis_File, save, NULL, ZEND_ACC_PUBLIC)

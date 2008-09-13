@@ -35,11 +35,6 @@
 
 zend_class_entry * ktaglib_ce_MPEG_File = NULL;
 
-static
-ZEND_BEGIN_ARG_INFO_EX(KTaglib_MPEG_File___construct_args, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 1)
-  ZEND_ARG_INFO(0, filename)
-ZEND_END_ARG_INFO()
-
 /*       {{{ Methods */
 PHP_METHOD(KTaglib_MPEG_File, __construct)
 {
@@ -172,7 +167,7 @@ PHP_METHOD(KTaglib_MPEG_File, save)
 }
 
 static zend_function_entry KTaglib_File_MPEG_methods[] = {
-	PHP_ME(KTaglib_MPEG_File, __construct, KTaglib_MPEG_File___construct_args, /**/ZEND_ACC_PUBLIC)
+	PHP_ME(KTaglib_MPEG_File, __construct, NULL, /**/ZEND_ACC_PUBLIC)
 	PHP_ME(KTaglib_MPEG_File, getID3v1Tag, NULL, /**/ZEND_ACC_PUBLIC)
 	PHP_ME(KTaglib_MPEG_File, getID3v2Tag, NULL, /**/ZEND_ACC_PUBLIC)
 	PHP_ME(KTaglib_MPEG_File, save, NULL, ZEND_ACC_PUBLIC)

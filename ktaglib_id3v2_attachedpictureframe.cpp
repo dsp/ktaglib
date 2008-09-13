@@ -35,11 +35,6 @@
 
 zend_class_entry * ktaglib_ce_ID3v2_PictureFrame = NULL;
 
-static
-ZEND_BEGIN_ARG_INFO_EX(KTaglib_ID3v2_AttachedPictureFrame_savePicture_args, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 1)
-  ZEND_ARG_INFO(0, filename)
-ZEND_END_ARG_INFO()
-
 static int
 attachedpicture_set_picture(TagLib::ID3v2::AttachedPictureFrame * frame, char * filename TSRMLS_DC)
 {
@@ -149,7 +144,7 @@ static zend_function_entry KTaglib_ID3v2_AttachedPictureFrame_methods[] = {
 	PHP_ME(KTaglib_ID3v2_AttachedPictureFrame, setPicture, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(KTaglib_ID3v2_AttachedPictureFrame, getMimeType, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(KTaglib_ID3v2_AttachedPictureFrame, getDescription, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(KTaglib_ID3v2_AttachedPictureFrame, savePicture, KTaglib_ID3v2_AttachedPictureFrame_savePicture_args, ZEND_ACC_PUBLIC)
+	PHP_ME(KTaglib_ID3v2_AttachedPictureFrame, savePicture, NULL, ZEND_ACC_PUBLIC)
 	{ NULL, NULL, NULL }
 };
 

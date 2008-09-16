@@ -27,7 +27,7 @@
    | POSSIBILITY OF SUCH DAMAGE.                                          |
    +----------------------------------------------------------------------+
    | Authors: David Soria Parra <dsp@php.net>                             |
-   |          Anatoliy Belsky <a@belsky.info>                             |
+   |          Anatoliy Belsky <ab@php.net>                                |
    +----------------------------------------------------------------------+
 */
 #include "php_ktaglib.h"

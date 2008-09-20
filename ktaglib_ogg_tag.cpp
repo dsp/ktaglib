@@ -348,6 +348,28 @@ PHP_METHOD(KTaglib_Ogg_Tag, fieldCount)
 }
 
 
+PHP_METHOD(KTaglib_Ogg_Tag, getTagList)
+{
+	array_init(return_value);
+
+	ze_ktaglib_object *intern = (ze_ktaglib_object*) zend_object_store_get_object(getThis() TSRMLS_CC);
+	TagLib::Ogg::Vorbis::File *file = (TagLib::Ogg::Vorbis::File*) intern->zo_file->file;
+
+	TagLib::Ogg::FieldListMap fields = file->tag()->fieldListMap();
+	TagLib::Ogg::FieldListMap::ConstIterator it = fields.begin();
+
+	while(it != fields.end()) {
+		if(!(*it).second.isEmpty()) {
+			zval *value;
+			ALLOC_INIT_ZVAL(value);
+			ZVAL_STRING(value, (char*) (*it).second.front().toCString(), 1);
+			add_assoc_zval(return_value, (char*) (*it).first.toCString(), value);
+		}
+		it++;
+	}
+}
+
+
 static zend_function_entry KTaglib_Ogg_Tag_methods[] = {
 	PHP_ME(KTaglib_Ogg_Tag, getTitle, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(KTaglib_Ogg_Tag, setTitle, NULL, ZEND_ACC_PUBLIC)
@@ -370,6 +392,7 @@ static zend_function_entry KTaglib_Ogg_Tag_methods[] = {
 	PHP_ME(KTaglib_Ogg_Tag, contains, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(KTaglib_Ogg_Tag, fieldCount, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(KTaglib_Ogg_Tag, getField, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(KTaglib_Ogg_Tag, getTagList, NULL, ZEND_ACC_PUBLIC)
 	{ NULL, NULL, NULL }
 };
 
